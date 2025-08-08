@@ -7,7 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
 
 export const metadata = {
-  title: "YenuStore - EliudWaititu",
+  title: "Yenu Store Kenya | The Latest Smartphones and Gadgets in Kenya",
   description: "All Your Gadgets in One Place",
 };
 
