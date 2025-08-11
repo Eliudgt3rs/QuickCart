@@ -6,6 +6,7 @@ import { useAppContext, getToken } from "@/context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";  
+import Footer from "@/components/seller/Footer";
 
 const AddProduct = () => {
 
@@ -173,7 +174,7 @@ const AddProduct = () => {
           ADD
         </button>
       </form>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

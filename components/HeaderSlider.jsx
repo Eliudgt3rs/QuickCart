@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import { useAppContext } from "@/context/AppContext";
+import { useRouter } from "next/navigation";
+
 
 const HeaderSlider = () => {
   const sliderData = [
@@ -31,6 +34,7 @@ const HeaderSlider = () => {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useAppContext();
 
   useEffect(() => {
     const interval = setInterval(() => {
