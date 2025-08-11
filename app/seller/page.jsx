@@ -17,6 +17,7 @@ const AddProduct = () => {
   const [files, setFiles] = useState([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [features, setFeatures] = useState('');
   const [category, setCategory] = useState('Earphone');
   const [price, setPrice] = useState('');
   const [offerPrice, setOfferPrice] = useState('');
@@ -28,6 +29,7 @@ const AddProduct = () => {
 
     formData.append("name", name);
     formData.append("description", description);
+    formData.append("features", features);
     formData.append("category", category);
     formData.append("price", price);
     formData.append("offerPrice", offerPrice);
@@ -49,10 +51,11 @@ const AddProduct = () => {
           setFiles([]);
           setName('');
           setDescription('');
+          setFeatures('');
           setCategory('Earphone');
           setPrice('');
           setOfferPrice('');
-          router.push('/products');
+          router.push('/seller/product-list');
     } else { 
           toast.error(data.message || "Failed to add product");
     }
@@ -121,10 +124,26 @@ const AddProduct = () => {
             required
           ></textarea>
         </div>
+        <div className="flex flex-col gap-1 max-w-md">
+          <label
+            className="text-base font-medium"
+            htmlFor="product-features"
+          >
+            Product Features
+          </label>
+          <textarea
+            id="product-features"
+            rows={4}
+            className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 resize-none"
+            placeholder="Type here"
+            onChange={(e) => setFeatures(e.target.value)}
+            value={features}
+          ></textarea>
+        </div>
         <div className="flex items-center gap-5 flex-wrap">
           <div className="flex flex-col gap-1 w-32">
             <label className="text-base font-medium" htmlFor="category">
-              Category
+             Select Category
             </label>
             <select
               id="category"

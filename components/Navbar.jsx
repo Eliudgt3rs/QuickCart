@@ -19,7 +19,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-gray-700">
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-gray-700 bg-white">
+  
+
       <Image
         className="cursor-pointer w-40 md:w-45"
         onClick={() => router.push("/")}
@@ -27,7 +29,7 @@ const Navbar = () => {
         alt="logo"
       />
 
-      <div className="flex items-center gap-4 lg:gap-8 max-md:hidden">
+      <div className=" flex items-center gap-4 lg:gap-8 max-md:hidden">
         <Link href="/" className="hover:text-gray-900 transition">
           Home
         </Link>
@@ -41,6 +43,8 @@ const Navbar = () => {
           Contact
         </Link>
 
+        
+
         {isSeller && (
           <button
             onClick={() => router.push("/seller")}
@@ -53,6 +57,9 @@ const Navbar = () => {
 
       <ul className="hidden md:flex items-center gap-4">
         <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+        <Link href="/cart" className="hover:text-gray-900 transition">
+          <Image className="w-5 h-5" src={assets.cart_icon} alt="cart icon" />
+        </Link>
         {user ? (
           <UserButton> 
               <UserButton.MenuItems>
@@ -80,6 +87,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center md:hidden gap-3">
+        
         {isSeller && (
           <button
             onClick={() => router.push("/seller")}
@@ -88,6 +96,9 @@ const Navbar = () => {
             Admin
           </button>
         )}
+        <Link href="/cart" className="hover:text-gray-900 transition">
+          <Image className="w-5 h-5" src={assets.cart_icon} alt="cart icon" />
+        </Link>
         {user ? (
           <UserButton> 
               <UserButton.MenuItems>
