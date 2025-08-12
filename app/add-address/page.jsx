@@ -4,8 +4,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { useState } from "react";
+import { useAppContext } from "@/context/AppContext";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import React from "react";
+
 
 const AddAddress = () => {
+
+    const { getToken, router } = useAppContext();
+
 
     const [address, setAddress] = useState({
         fullName: '',
@@ -14,11 +22,32 @@ const AddAddress = () => {
         area: '',
         city: '',
         state: '',
+        landmark: '',
     })
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
+        try {
+            
+            const token = await getToken();
+            const { data } = await axios.post("/api/user/add-address", { address }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            
+            );
 
+            if (data.success) {
+                toast.success(data.message);
+                
+                router.push('/cart');
+            } else {
+                toast.error(data.message || "Failed to add address");
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     return (
@@ -74,9 +103,16 @@ const AddAddress = () => {
                                 onChange={(e) => setAddress({ ...address, state: e.target.value })}
                                 value={address.state}
                             />
+                            <input
+                                className="px-2 py-2.5 focus:border-red-500 transition border border-gray-500/30 rounded outline-none w-full text-gray-500"
+                                type="text"
+                                placeholder="Landmark (optional)"
+                                onChange={(e) => setAddress({ ...address, landmark: e.target.value })}
+                                value={address.landmark}
+                            />
                         </div>
                     </div>
-                    <button type="submit" className="max-w-sm w-full mt-6 bg-red-600 text-white py-3 hover:bg-red-700 uppercase">
+                    <button type="submit" className="rounded-full max-w-sm w-full mt-6 bg-red-600 text-white py-3 hover:bg-red-700 uppercase">
                         Save address
                     </button>
                 </form>
