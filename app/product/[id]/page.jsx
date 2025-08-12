@@ -30,12 +30,12 @@ const Product = () => {
 
     return productData ? (<>
         <Navbar />
-        <div className="px-6 md:px-16 lg:px-32 pt-14 space-y-10">
+        <div className="px-6 md:px-16 lg:px-32 pt-14 space-y-10 mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div className="px-5 lg:px-16 xl:px-20">
                     <div className="rounded-lg overflow-hidden bg-gray-500/10 mb-4">
                         <Image
-                            src={mainImage || productData.image[0]}
+                            src={productData.images[0]}
                             alt="alt"
                             className="w-full h-auto object-cover mix-blend-multiply"
                             width={1280}
@@ -44,7 +44,7 @@ const Product = () => {
                     </div>
 
                     <div className="grid grid-cols-4 gap-4">
-                        {productData.image.map((image, index) => (
+                        {productData.images.map((image, index) => (
                             <div
                                 key={index}
                                 onClick={() => setMainImage(image)}
@@ -79,15 +79,31 @@ const Product = () => {
                                 alt="star_dull_icon"
                             />
                         </div>
-                        <p>(4.5)</p>
+                        <p>(4.7)</p>
                     </div>
-                    <p className="text-gray-600 mt-3">
+
+                    {productData.features && productData.features.trim() !== "" && (
+  <>
+    <p className="text-gray-900 mt-3 text-2xl">Features</p>
+    <ul className="list-disc list-inside text-gray-700 mt-3">
+      {productData.features
+        .split(",") // split features by comma
+        .map((feature, idx) => (
+          <li key={idx}>{feature.trim()}</li>
+        ))}
+    </ul>
+  </>
+)}
+                    
+                    <p className="text-gray-900 mt-3 text-2xl"> About this product</p>
+                    <p className="text-gray-700 mt-3">
                         {productData.description}
                     </p>
+                    <p className="text-red-500 mt-3 text-2xl"> Price</p>
                     <p className="text-3xl font-medium mt-6">
-                        ${productData.offerPrice}
+                        Ksh{productData.offerPrice}
                         <span className="text-base font-normal text-gray-800/60 line-through ml-2">
-                            ${productData.price}
+                            Ksh{productData.price}
                         </span>
                     </p>
                     <hr className="bg-gray-600 my-6" />
@@ -95,8 +111,8 @@ const Product = () => {
                         <table className="table-auto border-collapse w-full max-w-72">
                             <tbody>
                                 <tr>
-                                    <td className="text-gray-600 font-medium">Brand</td>
-                                    <td className="text-gray-800/50 ">Generic</td>
+                                    <td className="text-gray-600 font-medium">Condition</td>
+                                    <td className="text-gray-800/50 ">Best Quality</td>
                                 </tr>
                                 <tr>
                                     <td className="text-gray-600 font-medium">Color</td>
@@ -112,11 +128,11 @@ const Product = () => {
                         </table>
                     </div>
 
-                    <div className="flex items-center mt-10 gap-4">
-                        <button onClick={() => addToCart(productData._id)} className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition">
+                    <div className="flex items-center mt-10 gap-4 rounded-full">
+                        <button onClick={() => addToCart(productData._id)} className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 hover:scale-105 transition rounded-full border border-gray-500/20">
                             Add to Cart
                         </button>
-                        <button onClick={() => { addToCart(productData._id); router.push('/cart') }} className="w-full py-3.5 bg-red-500 text-white hover:bg-red-600 transition">
+                        <button onClick={() => { addToCart(productData._id); router.push('/cart') }} className="w-full py-3.5 bg-red-500 text-white hover:bg-red-700 hover:scale-105 transition rounded-full border border-red-500/20">
                             Buy now
                         </button>
                     </div>
