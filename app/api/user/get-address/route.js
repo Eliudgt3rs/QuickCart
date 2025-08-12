@@ -4,16 +4,18 @@ import Address from "@/models/address";
 import { NextResponse } from "next/server";
 
 export async function GET(request) { 
-    try {
-        
-        const { userId } = getAuth(request);
-        
-        await connectDB();
-        const addresses = await Address.find({ userId });
+  try {
+    const { userId } = getAuth(request);
 
-        return NextResponse.json({ success: true, addresses }, { status: 200 });
-
-    } catch (error) {
-        return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+    if (!userId) {
+      return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
     }
+
+    await connectDB();
+    const addresses = await Address.find({ userId });
+
+    return NextResponse.json({ success: true, addresses }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ success: false, message: error.message });
+  }
 }

@@ -72,7 +72,8 @@ export const AppContextProvider = (props) => {
 
         let cartData = structuredClone(cartItems);
         if (cartData[itemId]) {
-            cartData[itemId] += 1;
+            toast.error("Item already in cart");
+            return
         }
         else {
             cartData[itemId] = 1;

@@ -2,6 +2,8 @@ import { getAuth } from "@clerk/nextjs/server";
 import connectDB from "@/config/db";
 import Address from "@/models/address";
 import { NextResponse } from "next/server";
+import authSeller from '@/lib/authSeller';
+
 
 export async function POST(request) { 
     try {
@@ -10,7 +12,7 @@ export async function POST(request) {
         const { address } = await request.json();
         await connectDB();
 
-        const newAddress = await Address.create({...address, user: userId});
+        const newAddress = await Address.create({...address, userId});
 
 
         return NextResponse.json({ success: true, message: "Address added successfully", newAddress }, { status: 201 });

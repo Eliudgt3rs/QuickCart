@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useClerk, useUser, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
-  const { isSeller, router, user } = useAppContext();
+  const { isSeller, router, user, getCartCount } = useAppContext();
   const { openSignIn } = useClerk();
   //const { user } = useUser(); // ✅ Get auth status
 
@@ -57,8 +57,13 @@ const Navbar = () => {
 
       <ul className="hidden md:flex items-center gap-4">
         <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
-        <Link href="/cart" className="hover:text-gray-900 transition">
-          <Image className="w-5 h-5" src={assets.cart_icon} alt="cart icon" />
+        <Link href="/cart" className="relative hover:text-gray-900 transition">
+          <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
+          {getCartCount() > 0 && (
+            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1.5 py-0.5">
+              {getCartCount()}
+            </span>
+          )}
         </Link>
         {user ? (
           <UserButton> 
@@ -96,8 +101,13 @@ const Navbar = () => {
             Admin
           </button>
         )}
-        <Link href="/cart" className="hover:text-gray-900 transition">
-          <Image className="w-5 h-5" src={assets.cart_icon} alt="cart icon" />
+        <Link href="/cart" className="relative hover:text-gray-900 transition">
+          <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
+          {getCartCount() > 0 && (
+            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1.5 py-0.5">
+              {getCartCount()}
+            </span>
+          )}
         </Link>
         {user ? (
           <UserButton> 
