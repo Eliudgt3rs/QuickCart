@@ -10,6 +10,16 @@ import { useClerk, useUser, UserButton } from "@clerk/nextjs";
 const Navbar = () => {
   const { isSeller, router, user, getCartCount } = useAppContext();
   const { openSignIn } = useClerk();
+  const [showSearch, setShowSearch] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim() !== '') {
+      router.push(`/search-results?query=${searchQuery}`);
+      setShowSearch(false);
+      setSearchQuery('');
+    }
+  };
   //const { user } = useUser(); // ✅ Get auth status
 
   const handleSignInClick = () => {
@@ -56,7 +66,17 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden md:flex items-center gap-4">
-        <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+        <Image className="w-6 h-6 cursor-pointer" src={assets.search_icon} alt="search icon" onClick={() => setShowSearch(!showSearch)} />
+        {showSearch && (
+          <input
+            type="text"
+            placeholder="Search..."
+            className="border border-gray-300 rounded-full px-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-300 w-64"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleSearch}
+          />
+        )}
         <Link href="/cart" className="relative hover:text-gray-900 transition">
           <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
           {getCartCount() > 0 && (
@@ -100,6 +120,17 @@ const Navbar = () => {
           >
             Admin
           </button>
+        )}
+        <Image className="w-6 h-6 cursor-pointer" src={assets.search_icon} alt="search icon" onClick={() => setShowSearch(!showSearch)} />
+        {showSearch && (
+          <input
+            type="text"
+            placeholder="Search..."
+            className="border border-gray-300 rounded-full px-4 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-300 w-32"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleSearch}
+          />
         )}
         <Link href="/cart" className="relative hover:text-gray-900 transition">
           <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
