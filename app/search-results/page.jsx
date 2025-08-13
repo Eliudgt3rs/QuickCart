@@ -1,4 +1,6 @@
-'use client'
+'use client';
+
+export const dynamic = 'force-dynamic'; // ✅ Prevent prerender build errors
 
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from '@/context/AppContext';
@@ -28,7 +30,9 @@ const SearchResults = () => {
     <>
       <Navbar />
       <div className="mt-6 flex flex-col items-center pt-14 mx-6">
-        <h2 className="text-2xl font-medium text-left w-full mb-6">Search Results for <span className='text-red-500'>"{searchQuery}"</span>  </h2>
+        <h2 className="text-2xl font-medium text-left w-full mb-6">
+          Search Results for <span className="text-red-500">"{searchQuery}"</span>
+        </h2>
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 flex-col items-center gap-6 mt-6 pb-14 w-full">
             {filteredProducts.map((product, index) => (
