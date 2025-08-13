@@ -11,23 +11,32 @@ function SearchResultsContent() {
   const { products } = useAppContext();
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('query');
+  const categoryQuery = searchParams.get('category'); // Get the category query parameter
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
+    let results = products;
+
     if (searchQuery) {
-      const results = products.filter(product =>
+      results = products.filter(product =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setFilteredProducts(results);
-    } else {
-      setFilteredProducts([]);
+    } else if (categoryQuery) {
+      // Assuming products have a 'category' property
+      results = products.filter(product =>
+        product.category && product.category.toLowerCase() === categoryQuery.toLowerCase()
+      );
     }
-  }, [searchQuery, products]);
+
+    setFilteredProducts(results);
+  }, [searchQuery, categoryQuery, products]); // Add categoryQuery to dependencies
+
+  const displayQuery = searchQuery || categoryQuery; // Display either search query or category query
 
   return (
     <div className="mt-6 flex flex-col items-center pt-14 mx-6">
       <h2 className="text-2xl font-medium text-left w-full mb-6">
-        Search Results for <span className="text-red-500">"{searchQuery}"</span>
+        Search Results for <span className="text-red-500">"{displayQuery}"</span>
       </h2>
 
       {filteredProducts.length > 0 ? (

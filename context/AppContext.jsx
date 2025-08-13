@@ -26,6 +26,15 @@ export const AppContextProvider = (props) => {
     const [isSeller, setIsSeller] = useState(false)
     const [cartItems, setCartItems] = useState({})
 
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 30; // Constant for products per page
+
+    // Calculate paginated products
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const paginatedProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
     const fetchProductData = async () => {
         try {
             const { data } = await axios.get('/api/product/list');
@@ -57,7 +66,7 @@ export const AppContextProvider = (props) => {
                 setUserData(data.user);
                 setCartItems(data.user.cartItems || {});
             }
-            else { 
+            else {
                 toast.error(data.message || "Failed to fetch user data");
             }
 
@@ -121,7 +130,7 @@ export const AppContextProvider = (props) => {
                 toast.success("Cart updated successfully");
             } catch (error) {
                 console.error("Error updating cart:", error);
-                toast.error("Failed to update cart");   
+                toast.error("Failed to update cart");
             }
         }
 
@@ -167,7 +176,8 @@ export const AppContextProvider = (props) => {
         products, fetchProductData,
         cartItems, setCartItems,
         addToCart, updateCartQuantity,
-        getCartCount, getCartAmount
+        getCartCount, getCartAmount,
+        paginatedProducts, productsPerPage, currentPage, setCurrentPage // Export new pagination values
     }
 
     return (

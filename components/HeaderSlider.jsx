@@ -9,32 +9,69 @@ const HeaderSlider = () => {
   const sliderData = [
     {
       id: 1,
+      title: "Capture Every Moment - The Latest Smartphones Are Here!",
+      offer: "Shop Now & Get Free Accessories",
+      buttonText1: "Discover Phones",
+      buttonText2: "Compare Models",
+      imgSrc: assets.samsung_s23phone_image,
+      // Add target URLs for buttons
+      button1Url: "/search-results?category=Smartphone",
+      button2Url: "/search-results?query=Smartphone",
+    },
+    {
+      id: 2,
+      title: "iPhone 15 Pro Max - Power in Your Pocket!",
+      offer: "Pre-order Now & Get Free AirPods",
+      buttonText1: "Pre-order iPhone",
+      buttonText2: "Explore More",
+      imgSrc: assets.samsung_s23phone_image,
+      button1Url: "/search-results?query=iPhone 15 Pro Max",
+      button2Url: "/search-results?category=Smartphone",
+    },
+    {
+      id: 3,
+      title: "Discover the iPhone SE - Big Power, Small Price!",
+      offer: "Limited Stock - Grab Yours Today!",
+      buttonText1: "Shop iPhone SE",
+      buttonText2: "Compare Models",
+      imgSrc: assets.samsung_s23phone_image,
+      button1Url: "/search-results?query=iPhone SE",
+      button2Url: "/search-results?category=Smartphone",
+    },
+    {
+      id: 4,
       title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
       offer: "Limited Time Offer 30% Off",
       buttonText1: "Buy now",
       buttonText2: "Find more",
       imgSrc: assets.header_headphone_image,
+      button1Url: "/search-results?category=Headphone",
+      button2Url: "/all-products",
     },
     {
-      id: 2,
+      id: 5,
       title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
       offer: "Hurry up only few lefts!",
       buttonText1: "Shop Now",
       buttonText2: "Explore Deals",
       imgSrc: assets.header_playstation_image,
+      button1Url: "/search-results?query=PlayStation 5",
+      button2Url: "/search-results?category=Gaming",
     },
     {
-      id: 3,
+      id: 6,
       title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
       offer: "Exclusive Deal 40% Off",
       buttonText1: "Order Now",
       buttonText2: "Learn More",
       imgSrc: assets.header_macbook_image,
+      button1Url: "/search-results?query=MacBook Pro",
+      button2Url: "/search-results?category=Laptop",
     },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const router = useAppContext();
+  const { router } = useAppContext(); // Destructure router from useAppContext
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,6 +82,12 @@ const HeaderSlider = () => {
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
+  };
+
+  const handleButtonClick = (url) => {
+    if (router && url) {
+      router.push(url);
+    }
   };
 
   return (
@@ -66,10 +109,16 @@ const HeaderSlider = () => {
                 {slide.title}
               </h1>
               <div className="flex items-center mt-4 md:mt-6 ">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-red-600 rounded-full text-white font-medium">
+                <button
+                  className="md:px-10 px-7 md:py-2.5 py-2 bg-red-600 rounded-full text-white font-medium"
+                  onClick={() => handleButtonClick(slide.button1Url)} // Add onClick handler
+                >
                   {slide.buttonText1}
                 </button>
-                <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
+                <button
+                  className="group flex items-center gap-2 px-6 py-2.5 font-medium"
+                  onClick={() => handleButtonClick(slide.button2Url)} // Add onClick handler
+                >
                   {slide.buttonText2}
                   <Image className="group-hover:translate-x-1 transition" src={assets.arrow_icon} alt="arrow_icon" />
                 </button>

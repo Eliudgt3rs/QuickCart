@@ -8,6 +8,7 @@ export const products = [
     rating: 4.5,
     price: "$299.99",
     imgSrc: assets.apple_earphone_image,
+    category: "Headphones", // Added category
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const products = [
     rating: 4.5,
     price: "$329.99",
     imgSrc: assets.bose_headphone_image,
+    category: "Headphones", // Added category
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const products = [
     rating: 4.5,
     price: "$799.99",
     imgSrc: assets.samsung_s23phone_image,
+    category: "Smartphones", // Added category
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const products = [
     rating: 4.5,
     price: "$349.99",
     imgSrc: assets.venu_watch_image,
+    category: "Watches", // Added category
   },
   {
     id: 5,
@@ -39,7 +43,8 @@ export const products = [
     description: "Ultra-HD, 825GB SSD, Ray Graphics",
     rating: 4.5,
     price: "$499.99",
-    imgSrc: assets.apple_earphone_image,
+    imgSrc: assets.playstation_image, // Using playstation_image from assets
+    category: "Gaming", // Added category
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ export const products = [
     rating: 4.5,
     price: "$3,899.99",
     imgSrc: assets.cannon_camera_image,
+    category: "Cameras", // Added category
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ export const products = [
     rating: 4.5,
     price: "$2,499.99",
     imgSrc: assets.macbook_image,
+    category: "Electronics", // Added category
   },
   {
     id: 8,
@@ -64,6 +71,7 @@ export const products = [
     rating: 4.5,
     price: "$299.99",
     imgSrc: assets.sony_airbuds_image,
+    category: "Headphones", // Added category
   },
   {
     id: 9,
@@ -72,6 +80,7 @@ export const products = [
     rating: 4.5,
     price: "$1,499.99",
     imgSrc: assets.projector_image,
+    category: "Electronics", // Added category
   },
   {
     id: 10,
@@ -80,6 +89,7 @@ export const products = [
     rating: 4.5,
     price: "$1,999.99",
     imgSrc: assets.asus_laptop_image,
+    category: "Electronics", // Added category
   },
   {
     id: 11,
@@ -88,6 +98,7 @@ export const products = [
     rating: 4.5,
     price: "$299.99",
     imgSrc: assets.apple_earphone_image,
+    category: "Headphones", // Added category
   },
   {
     id: 12,
@@ -96,6 +107,7 @@ export const products = [
     rating: 4.5,
     price: "$329.99",
     imgSrc: assets.bose_headphone_image,
+    category: "Headphones", // Added category
   },
   {
     id: 13,
@@ -104,6 +116,7 @@ export const products = [
     rating: 4.5,
     price: "$799.99",
     imgSrc: assets.samsung_s23phone_image,
+    category: "Smartphones", // Added category
   },
   {
     id: 14,
@@ -112,6 +125,7 @@ export const products = [
     rating: 4.5,
     price: "$349.99",
     imgSrc: assets.venu_watch_image,
+    category: "Watches", // Added category
   },
   {
     id: 15,
@@ -119,7 +133,8 @@ export const products = [
     description: "Ultra-HD, 825GB SSD, Ray Graphics",
     rating: 4.5,
     price: "$499.99",
-    imgSrc: assets.apple_earphone_image,
+    imgSrc: assets.playstation_image, // Using playstation_image from assets
+    category: "Gaming", // Added category
   },
   {
     id: 16,
@@ -128,6 +143,7 @@ export const products = [
     rating: 4.5,
     price: "$3,899.99",
     imgSrc: assets.cannon_camera_image,
+    category: "Cameras", // Added category
   },
   {
     id: 17,
@@ -136,6 +152,7 @@ export const products = [
     rating: 4.5,
     price: "$2,499.99",
     imgSrc: assets.macbook_image,
+    category: "Electronics", // Added category
   },
   {
     id: 18,
@@ -144,6 +161,7 @@ export const products = [
     rating: 4.5,
     price: "$299.99",
     imgSrc: assets.sony_airbuds_image,
+    category: "Headphones", // Added category
   },
   {
     id: 19,
@@ -152,6 +170,7 @@ export const products = [
     rating: 4.5,
     price: "$1,499.99",
     imgSrc: assets.projector_image,
+    category: "Electronics", // Added category
   },
   {
     id: 20,
@@ -160,5 +179,6 @@ export const products = [
     rating: 4.5,
     price: "$1,999.99",
     imgSrc: assets.asus_laptop_image,
+    category: "Electronics", // Added category
   },
 ];
