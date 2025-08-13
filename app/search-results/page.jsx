@@ -1,6 +1,6 @@
 'use client';
 
-export const dynamic = 'force-dynamic'; // ✅ Prevent prerender build errors
+export const dynamic = 'force-dynamic'; // ✅ Force dynamic rendering — no static generation at build time
 
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from '@/context/AppContext';
