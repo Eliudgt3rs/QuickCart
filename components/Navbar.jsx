@@ -66,7 +66,7 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden md:flex items-center gap-4">
-        <Image className="w-6 h-6 cursor-pointer" src={assets.search_icon} alt="search icon" onClick={() => setShowSearch(!showSearch)} />
+        <Image className="w-6 h-6 cursor-pointer hover:text-gray-900" src={assets.search_icon} alt="search icon" onClick={() => setShowSearch(!showSearch)} />
         {showSearch && (
           <input
             type="text"
@@ -105,7 +105,7 @@ const Navbar = () => {
             onClick={handleSignInClick}
             className="flex items-center gap-2 hover:text-gray-900 transition"
           >
-            <Image src={assets.user_icon} alt="user icon" />
+            <Image src={assets.user_icon} alt="user icon" className="w-6 h-6"/>
             Login
           </button>
         )}
@@ -121,7 +121,7 @@ const Navbar = () => {
             Admin
           </button>
         )}
-        <Image className="w-6 h-6 cursor-pointer" src={assets.search_icon} alt="search icon" onClick={() => setShowSearch(!showSearch)} />
+        <Image className="w-6 h-6 cursor-pointer hover:text-gray-900" src={assets.search_icon} alt="search icon" onClick={() => setShowSearch(!showSearch)} />
         {showSearch && (
           <input
             type="text"
@@ -160,7 +160,7 @@ const Navbar = () => {
             onClick={handleSignInClick}
             className="flex items-center gap-2 hover:text-gray-900 transition"
           >
-            <Image src={assets.user_icon} alt="user icon" />
+            <Image src={assets.user_icon} alt="user icon" className="w-6 h-6" />
             
           </button>
         )}
