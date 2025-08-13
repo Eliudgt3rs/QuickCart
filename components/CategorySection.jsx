@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 const CategorySection = () => {
   const router = useRouter();
 
-  const handleCategoryClick = (categoryName) => {
-    router.push(`/search-results?category=${categoryName}`);
+  const handleCategoryClick = (searchQuery) => { // Changed parameter to searchQuery
+    router.push(`/search-results?query=${searchQuery}`); // Changed to use query parameter
   };
 
   return (
@@ -20,19 +20,19 @@ const CategorySection = () => {
         {categories.map((category) => (
           <div
             key={category.id}
-            className="flex flex-col items-center cursor-pointer p-4 bg-gray-500/10 rounded-lg hover:shadow-lg transition-shadow duration-300"
-            onClick={() => handleCategoryClick(category.name)}
+            className="flex flex-col items-center cursor-pointer p-6 bg-gray-100 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+            onClick={() => handleCategoryClick(category.searchQuery)} // Changed to use category.searchQuery
           >
-            <div className="w-24 h-24 relative mb-4">
+            <div className="w-28 h-28 relative mb-4 overflow-hidden rounded-lg bg-gray-100 group-hover:bg-red-100 transition-colors duration-300">
               <Image
                 src={category.image}
                 alt={category.name}
                 layout="fill"
                 objectFit="contain"
-                className="rounded-full"
+                className="transition-transform duration-300 group-hover:scale-110"
               />
             </div>
-            <p className="text-lg font-medium text-gray-800 text-center">
+            <p className="text-xl font-semibold text-gray-800 text-center group-hover:text-red-600 transition-colors duration-300">
               {category.name}
             </p>
           </div>

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
@@ -16,14 +17,14 @@ const HeaderSlider = () => {
       imgSrc: assets.samsung_s23phone_image,
       // Add target URLs for buttons
       button1Url: "/search-results?category=Smartphone",
-      button2Url: "/search-results?query=Smartphone",
+      button2Url: "/search-results?query=phone",
     },
     {
       id: 2,
       title: "iPhone 15 Pro Max - Power in Your Pocket!",
       offer: "Pre-order Now & Get Free AirPods",
       buttonText1: "Pre-order iPhone",
-      buttonText2: "Explore More",
+      buttonText2: "Learn More",
       imgSrc: assets.samsung_s23phone_image,
       button1Url: "/search-results?query=iPhone 15 Pro Max",
       button2Url: "/search-results?category=Smartphone",

@@ -11,7 +11,6 @@ function SearchResultsContent() {
   const { products } = useAppContext();
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('query');
-  const categoryQuery = searchParams.get('category'); // Get the category query parameter
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
@@ -19,19 +18,15 @@ function SearchResultsContent() {
 
     if (searchQuery) {
       results = products.filter(product =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    } else if (categoryQuery) {
-      // Assuming products have a 'category' property
-      results = products.filter(product =>
-        product.category && product.category.toLowerCase() === categoryQuery.toLowerCase()
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (product.category && product.category.toLowerCase().includes(searchQuery.toLowerCase())) // Also filter by category if searchQuery matches
       );
     }
 
     setFilteredProducts(results);
-  }, [searchQuery, categoryQuery, products]); // Add categoryQuery to dependencies
+  }, [searchQuery, products]);
 
-  const displayQuery = searchQuery || categoryQuery; // Display either search query or category query
+  const displayQuery = searchQuery; // Only display search query
 
   return (
     <div className="mt-6 flex flex-col items-center pt-14 mx-6">
