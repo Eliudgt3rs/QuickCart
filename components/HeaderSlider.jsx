@@ -14,7 +14,7 @@ const HeaderSlider = () => {
       offer: "Shop Now & Get Free Accessories",
       buttonText1: "Discover Phones",
       buttonText2: "Compare Models",
-      imgSrc: assets.samsung_s23phone_image,
+      imgSrc: assets.mainhero,
       // Add target URLs for buttons
       button1Url: "/search-results?category=Smartphone",
       button2Url: "/search-results?query=phone",
@@ -35,7 +35,7 @@ const HeaderSlider = () => {
       offer: "Pre-order Now & Get Exclusive Benefits!",
       buttonText1: "Pre-order Pixel",
       buttonText2: "Learn More",
-      imgSrc: assets.samsung_s23phone_image, // Using existing image as placeholder
+      imgSrc: assets.pixel, // Using existing image as placeholder
       button1Url: "/search-results?query=Google Pixel",
       button2Url: "/search-results?category=Smartphone",
     },

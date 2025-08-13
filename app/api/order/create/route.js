@@ -5,7 +5,6 @@ import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import User from "@/models/User";
 import mongoose from "mongoose";
-import { unstable_noStore } from "next/cache";
 
 export async function POST(request) {
   try {
@@ -31,9 +30,9 @@ export async function POST(request) {
 
     const finalAmount = amount + Math.floor(amount * 0.005);
 
-    // create and save order
+    // create and save order directly
     const order = await Order.create({
-      userId, // Clerk user ID (string)
+      userId, // Clerk ID (string)
       address: new mongoose.Types.ObjectId(address),
       items: items.map((i) => ({
         product: new mongoose.Types.ObjectId(i.product),
@@ -44,14 +43,12 @@ export async function POST(request) {
       status: "Order Placed"
     });
 
-    // send event to Inngest for any async jobs
+    // send Inngest event for async stuff (emails, notifications, etc.)
     await inngest.send({
       name: "order/created",
       data: {
         orderId: order._id,
         userId,
-        address,
-        items,
         amount: finalAmount,
         date: order.date
       },
