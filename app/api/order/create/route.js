@@ -1,8 +1,10 @@
-import {  inngest } from "@/config/inngest";
+import { inngest } from "@/config/inngest";
 import Product from "@/models/Product";
+import Order from "@/models/order";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import User from "@/models/User";
+import mongoose from "mongoose";
 import { unstable_noStore } from "next/cache";
 
 export async function POST(request) {
@@ -14,7 +16,7 @@ export async function POST(request) {
       return NextResponse.json({ success: false, message: "Invalid Data" });
     }
 
-    // calculate amount
+    // calculate total amount
     let amount = 0;
     for (const item of items) {
       const product = await Product.findById(item.product);
@@ -27,15 +29,31 @@ export async function POST(request) {
       amount += product.offerPrice * item.quantity;
     }
 
-    // send event to Inngest
+    const finalAmount = amount + Math.floor(amount * 0.005);
+
+    // create and save order
+    const order = await Order.create({
+      userId, // Clerk user ID (string)
+      address: new mongoose.Types.ObjectId(address),
+      items: items.map((i) => ({
+        product: new mongoose.Types.ObjectId(i.product),
+        quantity: i.quantity
+      })),
+      amount: finalAmount,
+      date: Date.now(),
+      status: "Order Placed"
+    });
+
+    // send event to Inngest for any async jobs
     await inngest.send({
       name: "order/created",
       data: {
+        orderId: order._id,
         userId,
         address,
         items,
-        amount: amount + Math.floor(amount * 0.005),
-        date: Date.now(),
+        amount: finalAmount,
+        date: order.date
       },
     });
 
@@ -46,9 +64,9 @@ export async function POST(request) {
       await user.save();
     }
 
-    return NextResponse.json({ success: true, message: "Order Placed" });
+    return NextResponse.json({ success: true, message: "Order Placed", order });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return NextResponse.json({ success: false, message: error.message });
   }
 }
