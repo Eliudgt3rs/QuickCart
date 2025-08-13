@@ -94,7 +94,7 @@ const Navbar = () => {
               <UserButton.Action label="Cart" labelIcon={<CartIcon />} onClick={() => router.push("/cart")} />
             </UserButton.MenuItems>
             <UserButton.MenuItems>
-              <UserButton.Action label="My Orders" labelIcon={<BagIcon />} onClick={() => router.push("/my-orders")} />
+              <UserButton.Action label="My Orders" labelIcon={<BagIcon />} onClick={() => router.push("/cart/my-orders")} />
             </UserButton.MenuItems>
           </UserButton>
         ) : (
@@ -163,57 +163,105 @@ const Navbar = () => {
             <button onClick={() => setShowMobileMenu(false)} className="absolute top-4 right-4 p-2 focus:outline-none">
               <Image src={assets.add_icon} alt="close icon" className="w-6 h-6 rotate-45" />
             </button>
-            <div className="flex flex-col items-start gap-3 w-full py-4 px-6"> {/* Changed py-8 to py-4 */}
-              {/* Logo at the top */}
-              <Image
-                className="w-32 mb-8" // Adjusted width and added bottom margin
-                onClick={() => { router.push("/"); setShowMobileMenu(false); }}
-                src={assets.logo}
-                alt="logo"
-              />
+            <div className="flex flex-col w-full py-8 px-6 bg-white min-h-screen">
+  {/* Logo at the top */}
+  <div className="mb-6">
+    <Image
+      className="w-36 cursor-pointer"
+      onClick={() => {
+        router.push("/");
+        setShowMobileMenu(false);
+      }}
+      src={assets.logo}
+      alt="logo"
+      priority
+    /><hr className="width-full mt-3"/>
+              </div>
+              
 
-              <Link href="/" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}> {/* Changed py-2 to py-1 */}
-                Home
-              </Link>
-              <Link href="/all-products" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                Shop
-              </Link>
-              <Link href="/about-us" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                About Us
-              </Link>
-              <Link href="/contact-us" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                Contact
-              </Link>
+  {/* Navigation Links */}
+  <nav className="flex flex-col gap-4 text-lg font-medium text-gray-800">
+    <Link
+      href="/"
+      className="hover:text-red-600 transition"
+      onClick={() => setShowMobileMenu(false)}
+    >
+      Home
+    </Link>
+    <Link
+      href="/all-products"
+      className="hover:text-red-600 transition"
+      onClick={() => setShowMobileMenu(false)}
+    >
+      Shop
+    </Link>
+    <Link
+      href="/about-us"
+      className="hover:text-red-600 transition"
+      onClick={() => setShowMobileMenu(false)}
+    >
+      About Us
+    </Link>
+    <Link
+      href="/contact-us"
+      className="hover:text-red-600 transition"
+      onClick={() => setShowMobileMenu(false)}
+    >
+      Contact
+    </Link>
+  </nav>
 
-              {isSeller && (
-                <button
-                  onClick={() => { router.push("/seller"); setShowMobileMenu(false); }}
-                  className="text-base border px-6 py-2 rounded-full mt-4" // Added top margin
-                >
-                  Admin
-                </button>
-              )}
+  {/* Admin Button */}
+  {isSeller && (
+    <button
+      onClick={() => {
+        router.push("/seller");
+        setShowMobileMenu(false);
+      }}
+      className="mt-6 w-full text-center text-base border border-gray-300 px-6 py-2 rounded-full hover:bg-gray-100 transition"
+    >
+      Admin
+    </button>
+  )}
 
-              {user ? (
-                <div className="flex flex-col items-start gap-3 mt-4"> {/* Changed items-center to items-start, gap-4 to gap-3 */}
-                  <UserButton afterSignOutUrl="/" />
-                  <Link href="/" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                    Home
-                  </Link>
-                  <Link href="/all-products" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                    Products
-                  </Link>
-                  <Link href="/cart" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                    Cart
-                  </Link>
-                  <Link href="/my-orders" className="hover:text-gray-900 transition py-1" onClick={() => setShowMobileMenu(false)}>
-                    My Orders
-                  </Link>
-                </div>
-              ) : (
-                null
-              )}
-            </div>
+  {/* User Section */}
+  {user && (
+    <div className="mt-8 border-t border-gray-200 pt-6">
+      <UserButton afterSignOutUrl="/" />
+      <div className="flex flex-col gap-4 mt-4 text-lg font-medium text-gray-800">
+        <Link
+          href="/"
+          className="hover:text-gray-900 transition"
+          onClick={() => setShowMobileMenu(false)}
+        >
+          Home
+        </Link>
+        <Link
+          href="/all-products"
+          className="hover:text-gray-900 transition"
+          onClick={() => setShowMobileMenu(false)}
+        >
+          Products
+        </Link>
+        <Link
+          href="/cart"
+          className="hover:text-gray-900 transition"
+          onClick={() => setShowMobileMenu(false)}
+        >
+          Cart
+        </Link>
+        <Link
+          href="/cart/my-orders"
+          className="hover:text-gray-900 transition"
+          onClick={() => setShowMobileMenu(false)}
+        >
+          My Orders
+        </Link>
+      </div>
+    </div>
+  )}
+</div>
+
           </div>
         </>
       )}

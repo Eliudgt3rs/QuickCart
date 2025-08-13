@@ -16,7 +16,7 @@ export const categories = [
   {
     id: 3,
     name: "Watches",
-    image: assets.venu_watch_image,
+    image: assets.watchcat,
     searchQuery: "Watch", // Changed to match product category
   },
   {

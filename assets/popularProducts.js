@@ -6,7 +6,7 @@ export const popularProducts = [
     name: "Apple Earphones",
     description: "Noise-cancellation, 40-hour battery",
     rating: 4.5,
-    price: "$299.99",
+    offerPrice: 299.99, // Changed from price to offerPrice, and made it a number
     images: [assets.apple_earphone_image],
   },
   {
@@ -14,7 +14,7 @@ export const popularProducts = [
     name: "Bose QuietComfort 45",
     description: "Noise Cancellation, 24-hour battery",
     rating: 4.5,
-    price: "$329.99",
+    offerPrice: 329.99, // Changed from price to offerPrice, and made it a number
     images: [assets.bose_headphone_image],
   },
   {
@@ -22,7 +22,7 @@ export const popularProducts = [
     name: "Samsung Galaxy S23",
     description: "Fitness Tracking, AMOLED Display",
     rating: 4.5,
-    price: "$799.99",
+    offerPrice: 799.99, // Changed from price to offerPrice, and made it a number
     images: [assets.samsung_s23phone_image],
   },
   {
@@ -30,7 +30,7 @@ export const popularProducts = [
     name: "Garmin Venu 2",
     description: "Noise Cancellation, 24-hour battery",
     rating: 4.5,
-    price: "$349.99",
+    offerPrice: 349.99, // Changed from price to offerPrice, and made it a number
     images: [assets.venu_watch_image],
   },
   {
@@ -38,7 +38,7 @@ export const popularProducts = [
     name: "PlayStation 5",
     description: "Ultra-HD, 825GB SSD, Ray Graphics",
     rating: 4.5,
-    price: "$499.99",
+    offerPrice: 499.99, // Changed from price to offerPrice, and made it a number
     images: [assets.playstation_image],
   },
   {
@@ -46,7 +46,7 @@ export const popularProducts = [
     name: "Canon EOS R5",
     description: "45MP Sensor, 8K Video Recording",
     rating: 4.5,
-    price: "$3,899.99",
+    offerPrice: 3899.99, // Changed from price to offerPrice, and made it a number
     images: [assets.cannon_camera_image],
   },
 ];

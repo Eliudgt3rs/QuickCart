@@ -41,6 +41,14 @@ import sm_controller_image from "./sm_controller_image.png";
 import jbl_soundbox_image from "./jbl_soundbox_image.png";
 import boy_with_laptop_image from "./boy_with_laptop_image.png";
 import checkmark from "./checkmark.png";
+import iphone15 from "./iphone-hero.png";
+import watchcat from "./watchcategory.png";
+import bluegirl from "./blueegirl.webp";
+import greengirl from "./greengirl.webp";
+import yellowscarf from "./yellowscarf.jpg";
+import pixel from "./pixelhero.png";
+import purpleboy from "./purpleman.webp";
+import mainhero from "./phonesstorehero-fotor-20250813163733.png";
 import product_details_page_apple_earphone_image1 from "./product_details_page_apple_earphone_image1.png";
 import product_details_page_apple_earphone_image2 from "./product_details_page_apple_earphone_image2.png";
 import product_details_page_apple_earphone_image3 from "./product_details_page_apple_earphone_image3.png";
@@ -49,10 +57,18 @@ import product_details_page_apple_earphone_image5 from "./product_details_page_a
 
 export const assets = {
   logo,
+  bluegirl,
+  purpleboy,
+  pixel,
+  yellowscarf,
+  greengirl,
+  watchcat,
+  mainhero,
   search_icon,
   user_icon,
   cart_icon,
   add_icon,
+  iphone15,
   order_icon,
   instagram_icon,
   facebook_icon,

@@ -9,24 +9,43 @@ import { useParams } from "next/navigation";
 import Loading from "@/components/Loading";
 import { useAppContext } from "@/context/AppContext";
 import React from "react";
+import ImageModal from "@/components/ImageModal"; // Import ImageModal
 
 const Product = () => {
-
     const { id } = useParams();
+    const { products, router, addToCart } = useAppContext();
 
-    const { products, router, addToCart } = useAppContext()
-
-    const [mainImage, setMainImage] = useState(null);
     const [productData, setProductData] = useState(null);
+    const [mainImageDisplay, setMainImageDisplay] = useState(null); // State to control the main displayed image
+    const [showImageModal, setShowImageModal] = useState(false); // State for modal visibility
+    const [currentImageIndex, setCurrentImageIndex] = useState(0); // State for current image index in modal
 
     const fetchProductData = async () => {
         const product = products.find(product => product._id === id);
         setProductData(product);
-    }
+        if (product && product.images && product.images.length > 0) {
+            setMainImageDisplay(product.images[0]); // Set initial main image
+        }
+    };
 
     useEffect(() => {
         fetchProductData();
-    }, [id, products.length])
+    }, [id, products.length]);
+
+    const handleThumbnailClick = (image, index) => {
+        setMainImageDisplay(image);
+        setCurrentImageIndex(index);
+    };
+
+    const handleMainImageClick = () => {
+        if (productData && productData.images && productData.images.length > 0) {
+            setShowImageModal(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setShowImageModal(false);
+    };
 
     return productData ? (<>
         <Navbar />
@@ -35,11 +54,12 @@ const Product = () => {
                 <div className="px-5 lg:px-16 xl:px-20">
                     <div className="rounded-lg overflow-hidden bg-gray-500/10 mb-4">
                         <Image
-                            src={productData.images[0]}
-                            alt="alt"
-                            className="w-full h-auto object-cover mix-blend-multiply"
+                            src={mainImageDisplay || productData.images[0]} // Use mainImageDisplay
+                            alt="Product Main Image"
+                            className="w-full h-auto object-cover mix-blend-multiply cursor-pointer" // Added cursor-pointer
                             width={1280}
                             height={720}
+                            onClick={handleMainImageClick} // Add onClick to main image
                         />
                     </div>
 
@@ -47,18 +67,17 @@ const Product = () => {
                         {productData.images.map((image, index) => (
                             <div
                                 key={index}
-                                onClick={() => setMainImage(image)}
-                                className="cursor-pointer rounded-lg overflow-hidden bg-gray-500/10"
+                                onClick={() => handleThumbnailClick(image, index)} // Updated onClick
+                                                                className="cursor-pointer rounded-lg overflow-hidden bg-gray-500/10"
                             >
                                 <Image
                                     src={image}
-                                    alt="alt"
+                                    alt={`Thumbnail ${index}`}
                                     className="w-full h-auto object-cover mix-blend-multiply"
                                     width={1280}
                                     height={720}
                                 />
                             </div>
-
                         ))}
                     </div>
                 </div>
@@ -83,18 +102,18 @@ const Product = () => {
                     </div>
 
                     {productData.features && productData.features.trim() !== "" && (
-  <>
-    <p className="text-gray-900 mt-3 text-2xl">Features</p>
-    <ul className="list-disc list-inside text-gray-700 mt-3">
-      {productData.features
-        .split(",") // split features by comma
-        .map((feature, idx) => (
-          <li key={idx}>{feature.trim()}</li>
-        ))}
-    </ul>
-  </>
-)}
-                    
+                        <>
+                            <p className="text-gray-900 mt-3 text-2xl">Features</p>
+                            <ul className="list-disc list-inside text-gray-700 mt-3">
+                                {productData.features
+                                    .split(",") // split features by comma
+                                    .map((feature, idx) => (
+                                        <li key={idx}>{feature.trim()}</li>
+                                    ))}
+                            </ul>
+                        </>
+                    )}
+
                     <p className="text-gray-900 mt-3 text-2xl"> About this product</p>
                     <p className="text-gray-700 mt-3">
                         {productData.description}
@@ -129,19 +148,19 @@ const Product = () => {
                     </div>
 
                     <div className="flex items-center mt-10 gap-4 rounded-full">
-                        <button 
-    onClick={() => addToCart(productData._id, true)}
-    className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 hover:scale-105 transition rounded-full border border-gray-500/20"
->
-    Add to Cart
-</button>
+                        <button
+                            onClick={() => addToCart(productData._id, true)}
+                            className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 hover:scale-105 transition rounded-full border border-gray-500/20"
+                        >
+                            Add to Cart
+                        </button>
 
-<button 
-    onClick={() => { addToCart(productData._id, true); router.push('/cart'); }}
-    className="w-full py-3.5 bg-red-500 text-white hover:bg-red-700 hover:scale-105 transition rounded-full border border-red-500/20"
->
-    Buy now
-</button>
+                        <button
+                            onClick={() => { addToCart(productData._id, true); router.push('/cart'); }}
+                            className="w-full py-3.5 bg-red-500 text-white hover:bg-red-700 hover:scale-105 transition rounded-full border border-red-500/20"
+                        >
+                            Buy now
+                        </button>
 
                     </div>
                 </div>
@@ -160,6 +179,14 @@ const Product = () => {
             </div>
         </div>
         <Footer />
+
+        {showImageModal && productData && productData.images && (
+            <ImageModal
+                images={productData.images}
+                initialIndex={currentImageIndex}
+                onClose={handleCloseModal}
+            />
+        )}
     </>
     ) : <Loading />
 };

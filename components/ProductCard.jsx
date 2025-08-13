@@ -1,11 +1,13 @@
-import React from 'react'
-import { assets } from '@/assets/assets'
+import React from 'react'; // Removed useState
+import { assets } from '@/assets/assets';
 import Image from 'next/image';
 import { useAppContext } from '@/context/AppContext';
+// Removed ImageModal import
 
 const ProductCard = ({ product }) => {
-
-    const { currency, router } = useAppContext()
+    const { currency, router } = useAppContext();
+    // Removed showImageModal and currentImageIndex states
+    // Removed handleImageClick and handleCloseModal functions
 
     return (
         <div
@@ -19,6 +21,7 @@ const ProductCard = ({ product }) => {
                     className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full"
                     width={800}
                     height={800}
+                    // Removed onClick from image
                 />
                 <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md">
                     <Image
@@ -55,8 +58,10 @@ const ProductCard = ({ product }) => {
                     Buy now
                 </button>
             </div>
-        </div>
-    )
-}
 
-export default ProductCard
+            {/* Removed ImageModal rendering */}
+        </div>
+    );
+};
+
+export default ProductCard;
