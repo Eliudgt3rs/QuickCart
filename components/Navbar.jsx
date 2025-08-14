@@ -179,7 +179,7 @@ const Navbar = () => {
             }`}
           >
             <button onClick={() => setShowMobileMenu(false)} className="absolute top-4 right-4 p-2 focus:outline-none">
-              <Image src={assets.add_icon} alt="close icon" className="w-6 h-6 rotate-45" />
+              <Image src={assets.add_icon} alt="close icon" className="w-8 h-8 rotate-45" />
             </button>
             <div className="flex flex-col w-full py-8 px-6 bg-white min-h-screen">
   {/* Logo at the top */}
@@ -247,20 +247,8 @@ const Navbar = () => {
     <div className="mt-8 border-t border-gray-200 pt-6">
       <UserButton afterSignOutUrl="/" />
       <div className="flex flex-col gap-4 mt-4 text-lg font-medium text-gray-800">
-        <Link
-          href="/"
-          className="hover:text-gray-900 transition"
-          onClick={() => setShowMobileMenu(false)}
-        >
-          Home
-        </Link>
-        <Link
-          href="/all-products"
-          className="hover:text-gray-900 transition"
-          onClick={() => setShowMobileMenu(false)}
-        >
-          Products
-        </Link>
+        
+        
         <Link
           href="/cart"
           className="hover:text-gray-900 transition"

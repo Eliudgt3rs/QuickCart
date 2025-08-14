@@ -17,7 +17,7 @@ const HeaderSlider = () => {
       imgSrc: assets.mainhero,
       // Add target URLs for buttons
       button1Url: "/search-results?category=Smartphone",
-      button2Url: "/search-results?query=phone",
+      button2Url: "/search-results?query=Smartphone",
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ const HeaderSlider = () => {
       buttonText2: "Learn More",
       imgSrc: assets.iphone15,
       button1Url: "/search-results?query=iPhone 15 Pro Max",
-      button2Url: "/search-results?category=Smartphone",
+      button2Url: "/search-results?query=Smartphone",
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ const HeaderSlider = () => {
       buttonText2: "Learn More",
       imgSrc: assets.pixel, // Using existing image as placeholder
       button1Url: "/search-results?query=Google Pixel",
-      button2Url: "/search-results?category=Smartphone",
+      button2Url: "/search-results?query=Smartphone",
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ const HeaderSlider = () => {
       buttonText2: "Learn More",
       imgSrc: assets.header_macbook_image,
       button1Url: "/search-results?query=MacBook Pro",
-      button2Url: "/search-results?category=Laptop",
+      button2Url: "/search-results?query=Laptop",
     },
     {
       id: 5,
@@ -57,7 +57,7 @@ const HeaderSlider = () => {
       buttonText2: "Explore Deals",
       imgSrc: assets.header_playstation_image,
       button1Url: "/search-results?query=PlayStation 5",
-      button2Url: "/search-results?category=Gaming",
+      button2Url: "/search-results?query=Gaming",
     },
     {
       id: 6,

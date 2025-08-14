@@ -232,36 +232,65 @@ const OrderSummary = () => {
       </div>
 
       <div className="mt-5">
-        <label className="text-base font-medium uppercase text-gray-600 block mb-2">
-          Payment Method
-        </label>
-        <div className="flex items-center gap-5">
-          <div className="flex items-center">
-            <input
-              type="radio"
-              name="paymentMethod"
-              id="cod"
-              value="cod"
-              checked={paymentMethod === "cod"}
-              onChange={() => setPaymentMethod("cod")}
-              className="mr-2"
-            />
-            <label htmlFor="cod">Cash on Delivery</label>
-          </div>
-          <div className="flex items-center">
-            <input
-              type="radio"
-              name="paymentMethod"
-              id="online"
-              value="online"
-              checked={paymentMethod === "online"}
-              onChange={() => setPaymentMethod("online")}
-              className="mr-2"
-            />
-            <label htmlFor="online">Online Payment</label>
-          </div>
-        </div>
+  <label className="text-base font-semibold uppercase text-gray-700 block mb-3">
+    Payment Method
+  </label>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {/* Cash on Delivery Option */}
+    <div
+      onClick={() => setPaymentMethod("cod")}
+      className={`cursor-pointer border rounded-xl p-4 flex items-center gap-3 transition-all duration-300 ${
+        paymentMethod === "cod"
+          ? "border-blue-500 bg-blue-50 shadow-md"
+          : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
+      }`}
+    >
+      <input
+        type="radio"
+        name="paymentMethod"
+        id="cod"
+        value="cod"
+        checked={paymentMethod === "cod"}
+        onChange={() => setPaymentMethod("cod")}
+        className="hidden"
+      />
+      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+        💵
       </div>
+      <label htmlFor="cod" className="cursor-pointer font-medium text-gray-700">
+        Cash on Delivery
+      </label>
+    </div>
+
+    {/* Online Payment Option */}
+    <div
+      onClick={() => setPaymentMethod("online")}
+      className={`cursor-pointer border rounded-xl p-4 flex items-center gap-3 transition-all duration-300 ${
+        paymentMethod === "online"
+          ? "border-green-500 bg-green-50 shadow-md"
+          : "border-gray-300 hover:border-green-400 hover:bg-gray-50"
+      }`}
+    >
+      <input
+        type="radio"
+        name="paymentMethod"
+        id="online"
+        value="online"
+        checked={paymentMethod === "online"}
+        onChange={() => setPaymentMethod("online")}
+        className="hidden"
+      />
+      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-green-100 text-green-600">
+        💳
+      </div>
+      <label htmlFor="online" className="cursor-pointer font-medium text-gray-700">
+        Online Payment
+      </label>
+    </div>
+  </div>
+</div>
+
 
       <button onClick={createOrder} className="rounded-full w-full bg-red-600 text-white py-3 mt-5 hover:bg-red-700">
         Place Order
