@@ -147,7 +147,17 @@ const Product = () => {
                         </table>
                     </div>
 
-                    <div className="flex items-center mt-10 gap-4 rounded-full">
+                    <button
+                        onClick={() => {
+                            const whatsappMessage = `Hello, I'm interested in buying the product: ${productData.name} at Ksh${productData.offerPrice}.`;
+                            const whatsappUrl = `https://wa.me/254719790026?text=${encodeURIComponent(whatsappMessage)}`;
+                            window.open(whatsappUrl, '_blank');
+                        }}
+                        className="w-full py-3.5 bg-green-500 text-white hover:bg-green-700 hover:scale-105 transition rounded-full border border-gray-500/20 mt-4 mb-4"
+                    >
+                        Order on WhatsApp
+                    </button>
+                    <div className="flex items-center gap-4 rounded-full">
                         <button
                             onClick={() => addToCart(productData._id, true)}
                             className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 hover:scale-105 transition rounded-full border border-gray-500/20"

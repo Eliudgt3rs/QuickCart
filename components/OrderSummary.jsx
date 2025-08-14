@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "@clerk/nextjs";
 import { useAppContext } from "@/context/AppContext";
 import React, { useEffect, useState } from "react";
+import PaymentModal from "./PaymentModal";
 
 
 const OrderSummary = () => {
@@ -10,6 +11,9 @@ const OrderSummary = () => {
   const { currency, router, getCartCount, getCartAmount, getToken, user, cartItems, setCartItems } = useAppContext()
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("cod");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [onlinePaymentType, setOnlinePaymentType] = useState(null);
 
   const [userAddresses, setUserAddresses] = useState([]);
 
@@ -48,6 +52,10 @@ const OrderSummary = () => {
         return toast.error("Please select an address")
       }
 
+      if (paymentMethod === 'online') {
+        setShowPaymentModal(true);
+        return;
+      }
 
       let cartItemsArray = Object.keys(cartItems).map(
         (key) => ({ product: key, quantity: cartItems[key] }))
@@ -61,7 +69,55 @@ const OrderSummary = () => {
       const { data } = await axios.post("/api/order/create",
         {
           address: selectedAddress._id,
-          items: cartItemsArray
+          items: cartItemsArray,
+          paymentMethod
+        }, {
+          headers:{ Authorization: `Bearer ${token}`}
+        }
+      )
+
+      if (data.success) {
+        toast.success(data.message)
+        setCartItems({})
+        router.push('/order-placed')
+      } else {
+        toast.error(data.message)
+      }
+      
+    }catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  const handleOnlinePaymentSelection = async (type) => {
+    setOnlinePaymentType(type);
+    setShowPaymentModal(false);
+    // Now you can proceed with the order creation with the selected online payment type
+    // For now, let's just log it
+    console.log("Selected online payment type:", type);
+    // In a real application, you would trigger the payment gateway here
+    // For demonstration, I'll call createOrder again with the onlinePaymentType set
+    // Note: This is a simplified approach. A real implementation would be more robust.
+    try {
+      if (!selectedAddress) {
+        return toast.error("Please select an address")
+      }
+
+      let cartItemsArray = Object.keys(cartItems).map(
+        (key) => ({ product: key, quantity: cartItems[key] }))
+      cartItemsArray = cartItemsArray.filter(item => item.quantity > 0)
+      
+      if (cartItemsArray.length === 0) {
+        return toast.error("Cart is empty")
+      }
+      const token = await getToken()
+
+      const { data } = await axios.post("/api/order/create",
+        {
+          address: selectedAddress._id,
+          items: cartItemsArray,
+          paymentMethod: "online", // Ensure paymentMethod is online
+          onlinePaymentType: type // Pass the selected online payment type
         }, {
           headers:{ Authorization: `Bearer ${token}`}
         }
@@ -175,9 +231,47 @@ const OrderSummary = () => {
         </div>
       </div>
 
+      <div className="mt-5">
+        <label className="text-base font-medium uppercase text-gray-600 block mb-2">
+          Payment Method
+        </label>
+        <div className="flex items-center gap-5">
+          <div className="flex items-center">
+            <input
+              type="radio"
+              name="paymentMethod"
+              id="cod"
+              value="cod"
+              checked={paymentMethod === "cod"}
+              onChange={() => setPaymentMethod("cod")}
+              className="mr-2"
+            />
+            <label htmlFor="cod">Cash on Delivery</label>
+          </div>
+          <div className="flex items-center">
+            <input
+              type="radio"
+              name="paymentMethod"
+              id="online"
+              value="online"
+              checked={paymentMethod === "online"}
+              onChange={() => setPaymentMethod("online")}
+              className="mr-2"
+            />
+            <label htmlFor="online">Online Payment</label>
+          </div>
+        </div>
+      </div>
+
       <button onClick={createOrder} className="rounded-full w-full bg-red-600 text-white py-3 mt-5 hover:bg-red-700">
         Place Order
       </button>
+
+      <PaymentModal
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        onSelectPaymentType={handleOnlinePaymentSelection}
+      />
     </div>
   );
 };
