@@ -3,6 +3,7 @@ import User from "@/models/User";
 import connectDB from "./db";
 import Order from "@/models/order";
 
+
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "quickcart-next" });
 
@@ -88,6 +89,28 @@ export const createUserOrder = inngest.createFunction(
     }));
 
     await Order.insertMany(orders);
+
+    // Twilio SMS Notification
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER; // Your Twilio phone number
+
+    const client = require('twilio')(accountSid, authToken);
+
+    const targetPhoneNumber = "+254719790026"; // Your target phone number (include country code)
+    const messageBody = "NEW ORDER CREATED";
+
+    try {
+      await client.messages.create({
+        body: messageBody,
+        to: targetPhoneNumber,
+        from: twilioPhoneNumber,
+      });
+      console.log("SMS sent successfully!");
+    } catch (error) {
+      console.error("Failed to send SMS:", error);
+    }
+
     return { success: true, processed: orders.length };
   }
 );

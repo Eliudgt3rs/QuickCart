@@ -4,6 +4,7 @@ import { AppContextProvider } from "@/context/AppContext";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 import ScrollToTop from "@/components/ScrollToTop";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
 
@@ -19,8 +20,10 @@ export default function RootLayout({ children }) {
         <body className={`${outfit.className} antialiased text-gray-700`} >
           <Toaster />
           <AppContextProvider>
-            {children}
-            <ScrollToTop />
+            <WishlistProvider>
+              {children}
+              <ScrollToTop />
+            </WishlistProvider>
           </AppContextProvider>
         </body>
       </html>

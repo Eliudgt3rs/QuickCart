@@ -28,7 +28,7 @@ const Orders = () => {
             })
 
             if (data.success) {
-                setOrders(data.orders)
+                setOrders(data.orders.reverse())
                 setLoading(false)
             } else {
                 toast.error(data.message)

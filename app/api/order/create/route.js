@@ -5,6 +5,9 @@ import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import User from "@/models/User";
 import mongoose from "mongoose";
+import twilio from "twilio";
+
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 export async function POST(request) {
   try {
@@ -15,8 +18,9 @@ export async function POST(request) {
       return NextResponse.json({ success: false, message: "Invalid Data" });
     }
 
-    // calculate total amount
     let amount = 0;
+    const productDetails = [];
+
     for (const item of items) {
       const product = await Product.findById(item.product);
       if (!product) {
@@ -25,14 +29,21 @@ export async function POST(request) {
           message: `Product not found: ${item.product}`,
         });
       }
-      amount += product.offerPrice * item.quantity;
+      const itemTotal = product.offerPrice * item.quantity;
+      amount += itemTotal;
+
+      productDetails.push({
+        name: product.name,
+        quantity: item.quantity,
+        price: product.offerPrice,
+        total: itemTotal,
+      });
     }
 
     const finalAmount = amount + Math.floor(amount * 0.005);
 
-    // create and save order directly
     const order = await Order.create({
-      userId, // Clerk ID (string)
+      userId,
       address: new mongoose.Types.ObjectId(address),
       items: items.map((i) => ({
         product: new mongoose.Types.ObjectId(i.product),
@@ -43,7 +54,6 @@ export async function POST(request) {
       status: "Order Placed"
     });
 
-    // send Inngest event for async stuff (emails, notifications, etc.)
     await inngest.send({
       name: "order/created",
       data: {
@@ -54,12 +64,36 @@ export async function POST(request) {
       },
     });
 
-    // clear user cart
     const user = await User.findById(userId);
     if (user) {
       user.cartItems = {};
       await user.save();
     }
+
+    // Create formatted product list for WhatsApp
+    const productList = productDetails
+      .map(
+        (p, index) =>
+          `${index + 1}. ${p.name} (x${p.quantity}) - ${p.price} KES each = ${p.total} KES`
+      )
+      .join("\n");
+
+    // Create WhatsApp message
+    const whatsappMessage = 
+`🛒 *New Order Received*
+📦 Order ID: ${order._id}
+
+${productList}
+
+💰 *Total:* ${finalAmount} KES
+🔗 View Order: https://yenustore.vercel.app/seller/orders
+`;
+
+    await client.messages.create({
+      body: whatsappMessage,
+      from: `whatsapp:${process.env.TWILIO_WHATSAPP_NUMBER}`,
+      to: `whatsapp:${process.env.MY_PHONE_NUMBER}`
+    });
 
     return NextResponse.json({ success: true, message: "Order Placed", order });
   } catch (error) {
