@@ -80,6 +80,40 @@ const Product = () => {
                             </div>
                         ))}
                     </div>
+                    <div className="flex flex-col mt-8">
+                        <p className="text-red-500 text-2xl"> Price</p>
+                        <p className="text-3xl font-medium mt-2">
+                            Ksh{productData.offerPrice}
+                            <span className="text-base font-normal text-gray-800/60 line-through ml-2">
+                                Ksh{productData.price}
+                            </span>
+                        </p>
+                        <button
+                            onClick={() => {
+                                const whatsappMessage = `Hello, I'm interested in buying the product: ${productData.name} at Ksh${productData.offerPrice}.`;
+                                const whatsappUrl = `https://wa.me/254719790026?text=${encodeURIComponent(whatsappMessage)}`;
+                                window.open(whatsappUrl, '_blank');
+                            }}
+                            className="w-full py-3.5 bg-green-500 text-white hover:bg-green-700 hover:scale-105 transition rounded-full border border-gray-500/20 mt-4 mb-4"
+                        >
+                            Order on WhatsApp
+                        </button>
+                        <div className="flex items-center gap-4 rounded-full">
+                            <button
+                                onClick={() => addToCart(productData._id, true)}
+                                className="w-full py-3.5 bg-gray-100 text-red-500/80 hover:bg-gray-200 hover:scale-105 transition rounded-full border border-gray-500/20 text-lg"
+                            >
+                                Add to Cart
+                            </button>
+
+                            <button
+                                onClick={() => { addToCart(productData._id, true); router.push('/cart'); }}
+                                className="w-full py-3.5 bg-red-500 text-white hover:bg-red-700 hover:scale-105 transition rounded-full border border-red-500/20 text-lg"
+                            >
+                                Buy now
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="flex flex-col">
@@ -118,13 +152,7 @@ const Product = () => {
                     <p className="text-gray-700 mt-3">
                         {productData.description}
                     </p>
-                    <p className="text-red-500 mt-3 text-2xl"> Price</p>
-                    <p className="text-3xl font-medium mt-6">
-                        Ksh{productData.offerPrice}
-                        <span className="text-base font-normal text-gray-800/60 line-through ml-2">
-                            Ksh{productData.price}
-                        </span>
-                    </p>
+                    
                     <hr className="bg-gray-600 my-6" />
                     <div className="overflow-x-auto">
                         <table className="table-auto border-collapse w-full max-w-72">
@@ -137,6 +165,7 @@ const Product = () => {
                                     <td className="text-gray-600 font-medium">Color</td>
                                     <td className="text-gray-800/50 ">Multi</td>
                                 </tr>
+                                
                                 <tr>
                                     <td className="text-gray-600 font-medium">Category</td>
                                     <td className="text-gray-800/50">
@@ -145,33 +174,6 @@ const Product = () => {
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-
-                    <button
-                        onClick={() => {
-                            const whatsappMessage = `Hello, I'm interested in buying the product: ${productData.name} at Ksh${productData.offerPrice}.`;
-                            const whatsappUrl = `https://wa.me/254719790026?text=${encodeURIComponent(whatsappMessage)}`;
-                            window.open(whatsappUrl, '_blank');
-                        }}
-                        className="w-full py-3.5 bg-green-500 text-white hover:bg-green-700 hover:scale-105 transition rounded-full border border-gray-500/20 mt-4 mb-4"
-                    >
-                        Order on WhatsApp
-                    </button>
-                    <div className="flex items-center gap-4 rounded-full">
-                        <button
-                            onClick={() => addToCart(productData._id, true)}
-                            className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 hover:scale-105 transition rounded-full border border-gray-500/20"
-                        >
-                            Add to Cart
-                        </button>
-
-                        <button
-                            onClick={() => { addToCart(productData._id, true); router.push('/cart'); }}
-                            className="w-full py-3.5 bg-red-500 text-white hover:bg-red-700 hover:scale-105 transition rounded-full border border-red-500/20"
-                        >
-                            Buy now
-                        </button>
-
                     </div>
                 </div>
             </div>
