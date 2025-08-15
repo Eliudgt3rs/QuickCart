@@ -10,8 +10,28 @@ const HeaderSlider = () => {
   const sliderData = [
     {
       id: 1,
+      title: "From as low as 7,900 - Big Value, Small Price!",
+      offer: "Buy Now & Get Free Phone Case!",
+      buttonText1: "Buy Now",
+      buttonText2: "Learn More",
+      imgSrc: assets.redme,
+      button1Url: "/search-results?query=Redme A5",
+      button2Url: "/search-results?query=Smartphone",
+    },
+     {
+      id: 2,
+      title: "The New iPhone 17 - Power in Your Pocket!",
+      offer: "Pre-order Now & Get Free AirPods!",
+      buttonText1: "Pre-order iPhone",
+      buttonText2: "Learn More",
+      imgSrc: assets.iphone17,
+      button1Url: "/search-results?query=iPhone 17",
+      button2Url: "/search-results?query=Smartphone",
+    },
+    {
+      id: 7,
       title: "Capture Every Moment - The Latest Smartphones Are Here!",
-      offer: "Shop Now & Get Free Accessories",
+      offer: "Shop Now & Get Free Accessories!",
       buttonText1: "Discover Phones",
       buttonText2: "Compare Models",
       imgSrc: assets.mainhero,
@@ -19,16 +39,8 @@ const HeaderSlider = () => {
       button1Url: "/search-results?category=Smartphone",
       button2Url: "/search-results?query=Smartphone",
     },
-    {
-      id: 2,
-      title: "iPhone 15 Pro Max - Power in Your Pocket!",
-      offer: "Pre-order Now & Get Free AirPods",
-      buttonText1: "Pre-order iPhone",
-      buttonText2: "Learn More",
-      imgSrc: assets.iphone15,
-      button1Url: "/search-results?query=iPhone 15 Pro Max",
-      button2Url: "/search-results?query=Smartphone",
-    },
+   
+    
     {
       id: 3,
       title: "Experience the Future - The New Google Pixel is Here!",
@@ -42,7 +54,7 @@ const HeaderSlider = () => {
     {
       id: 4,
       title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
-      offer: "Exclusive Deal 40% Off",
+      offer: "Exclusive Deal 25% Off!",
       buttonText1: "Order Now",
       buttonText2: "Learn More",
       imgSrc: assets.header_macbook_image,
@@ -51,7 +63,7 @@ const HeaderSlider = () => {
     },
     {
       id: 5,
-      title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
+      title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Pro Today!",
       offer: "Hurry up only few lefts!",
       buttonText1: "Shop Now",
       buttonText2: "Explore Deals",
@@ -62,7 +74,7 @@ const HeaderSlider = () => {
     {
       id: 6,
       title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
-      offer: "Limited Time Offer 30% Off",
+      offer: "Limited Time Offer 30% Off!",
       buttonText1: "Buy now",
       buttonText2: "Find more",
       imgSrc: assets.header_headphone_image,
@@ -105,8 +117,8 @@ const HeaderSlider = () => {
             key={slide.id}
             className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
           >
-            <div className="md:pl-8 mt-10 md:mt-0">
-              <p className="md:text-base text-red-600 pb-1">{slide.offer}</p>
+            <div className="md:pl-8 mt-4 md:mt-0">
+              <p className="md:text-base text-red-600 pb-2">{slide.offer}</p>
               <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
                 {slide.title}
               </h1>

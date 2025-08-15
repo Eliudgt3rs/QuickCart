@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 import ScrollToTop from "@/components/ScrollToTop";
 import { WishlistProvider } from "@/context/WishlistContext";
+import Script from "next/script";
 
 const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
               <ScrollToTop />
             </WishlistProvider>
           </AppContextProvider>
+          <Script src="//code.tidio.co/rnso6itayaxmnwwlihwjhhhwikfdtek1.js" async />
         </body>
       </html>
     </ClerkProvider>

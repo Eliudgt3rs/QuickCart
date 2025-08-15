@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.29.0",
+    "@emailjs/browser": "^4.4.1",
     "axios": "^1.11.0",
     "cloudinary": "^2.7.0",
     "git-filter-repo": "^0.0.30",
@@ -20,6 +21,7 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.1",
     "react-icons": "^5.5.0",
+    "react-responsive-carousel": "^3.2.23",
     "stripe": "^18.4.0",
     "twilio": "^5.8.0"
   },

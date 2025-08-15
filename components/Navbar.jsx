@@ -193,7 +193,7 @@ const Navbar = () => {
       src={assets.logo}
       alt="logo"
       priority
-    /><hr className="width-full mt-3"/>
+    /><hr className="width-full mt-6"/>
               </div>
               
 

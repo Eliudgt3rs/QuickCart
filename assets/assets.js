@@ -49,6 +49,13 @@ import greengirl from "./greengirl.webp";
 import yellowscarf from "./yellowscarf.jpg";
 import pixel from "./pixelhero.png";
 import purpleboy from "./purpleman.webp";
+import phones from './ourshop.jpg';
+import aboutone from "./TheYenuPhonesKenya.png";
+import abouttwo from "./abouttwo.png";
+import aboutthree from "./aboutthree.png";
+import aboutfour from "./aboutf.png";
+import redme from "./redmeA5.png";
+import iphone17 from "./iphone17.png"
 import mainhero from "./phonesstorehero-fotor-20250813163733.png";
 import product_details_page_apple_earphone_image1 from "./product_details_page_apple_earphone_image1.png";
 import product_details_page_apple_earphone_image2 from "./product_details_page_apple_earphone_image2.png";
@@ -59,6 +66,13 @@ import product_details_page_apple_earphone_image5 from "./product_details_page_a
 export const assets = {
   logo,
   bluegirl,
+  iphone17,
+  redme,
+  phones,
+  aboutone,
+  abouttwo,
+  aboutthree,
+  aboutfour,
   purpleboy,
   pixel,
   yellowscarf,
