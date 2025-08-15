@@ -10,12 +10,12 @@ const HeaderSlider = () => {
   const sliderData = [
     {
       id: 1,
-      title: "From as low as 7,900 - Big Value, Small Price!",
+      title: "From as low as 9,999 - Big Value, Small Price!",
       offer: "Buy Now & Get Free Phone Case!",
       buttonText1: "Buy Now",
       buttonText2: "Learn More",
       imgSrc: assets.redme,
-      button1Url: "/search-results?query=Redme A5",
+      button1Url: "/search-results?query=Redmi A5",
       button2Url: "/search-results?query=Smartphone",
     },
      {
