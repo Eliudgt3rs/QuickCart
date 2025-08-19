@@ -61,19 +61,19 @@ const ContactUs = () => {
               <form ref={form} onSubmit={sendEmail}>
                 <div className="mb-6">
                   <label htmlFor="user_name" className="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
-                  <input type="text" id="user_name" name="user_name" required className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="text" placeholder='Enter Your Name' id="user_name" name="user_name" required className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <div className="mb-6">
                   <label htmlFor="user_email" className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                  <input type="email" id="user_email" name="user_email" required className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="email" placeholder='Enter Your Email Address' id="user_email" name="user_email" required className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <div className="mb-6">
                   <label htmlFor="user_phone" className="block text-gray-700 text-sm font-bold mb-2">Phone Number (Optional)</label>
-                  <input type="tel" id="user_phone" name="user_phone" className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="tel" id="user_phone" placeholder='Enter Your Phone Number' name="user_phone" className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <div className="mb-6">
                   <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">Your Message</label>
-                  <textarea id="message" name="message" rows="5" required className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                  <textarea id="message" placeholder='Type Your Message Here...' name="message" rows="5" required className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 </div>
                 <div className="text-center">
                   <button type="submit" disabled={isSubmitting} className="w-full bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition duration-300 disabled:bg-gray-400">
@@ -91,8 +91,8 @@ const ContactUs = () => {
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Contact Information</h3>
                 <p className="text-gray-700 mb-2"><strong>Email:</strong> yenustorekenya@gmail.com</p>
                 <p className="text-gray-700 mb-2"><strong>Phone:</strong> 0719 790 026</p>
-                <p className="text-gray-700 mb-2"><strong>Phone :</strong> 0702 723 854</p>
-                <p className="text-gray-700 mb-2"><strong>Phone:</strong> 0719 790 026</p>
+                <p className="text-gray-700 mb-2"><strong>Phone :</strong> 0748 459091</p>
+               
               </div>
               <div className="bg-white p-8 rounded-lg shadow-lg">
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">We are the best in Kenya.</h3>

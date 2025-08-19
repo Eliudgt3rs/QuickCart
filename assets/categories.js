@@ -3,34 +3,36 @@ import { assets } from "./assets";
 export const categories = [
   {
     id: 1,
-    name: "Earphones",
-    image: assets.apple_earphone_image,
-    searchQuery: "Earphone", // Changed to match product category
-  },
-  {
-    id: 2,
-    name: "Headphones",
-    image: assets.bose_headphone_image,
-    searchQuery: "Headphone", // Changed to match product category
-  },
-  {
-    id: 3,
-    name: "Watches",
-    image: assets.watchcat,
-    searchQuery: "Watch", // Changed to match product category
-  },
-  {
-    id: 4,
     name: "Smartphones",
     image: assets.samsung_s23phone_image,
     searchQuery: "Smartphone", // Changed to match product category
   },
   {
-    id: 5,
+    id: 2,
+    name: "Earphones",
+    image: assets.apple_earphone_image,
+    searchQuery: "Earphone", // Changed to match product category
+  },
+  {
+    id: 3,
     name: "Laptops",
     image: assets.macbook_image,
     searchQuery: "Laptop", // Assuming there will be products with category "Laptop" or I can change productData.js
   },
+  {
+    id: 4,
+    name: "Headphones",
+    image: assets.bose_headphone_image,
+    searchQuery: "Headphone", // Changed to match product category
+  },
+  {
+    id: 5,
+    name: "Watches",
+    image: assets.watchcat,
+    searchQuery: "Watch", // Changed to match product category
+  },
+  
+  
   {
     id: 6,
     name: "Gaming",

@@ -39,7 +39,7 @@ export const AppContextProvider = (props) => {
         try {
             const { data } = await axios.get('/api/product/list');
             if (data.success) {
-                setProducts(data.products);
+                setProducts(data.products.reverse());
             } else {
                 toast.error(data.message || "Failed to fetch products");
             }
