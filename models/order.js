@@ -31,9 +31,13 @@ const orderSchema = new mongoose.Schema({
     type: String,
     default: "Order Placed"
   },
-  date: {
+    date: {
     type: Date,
     default: Date.now
+  },
+  paymentMethod: {
+    type: String,
+    required: true
   }
 }, { timestamps: true });
 

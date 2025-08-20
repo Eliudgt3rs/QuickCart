@@ -55,6 +55,7 @@ import abouttwo from "./abouttwo.png";
 import aboutthree from "./aboutthree.png";
 import aboutfour from "./aboutf.png";
 import redme from "./redmeA5.png";
+import lipanampesa from "./lipa-na-mpesa-featured.jpg";
 import iphone17 from "./iphone17.png"
 import mainhero from "./phonesstorehero-fotor-20250813163733.png";
 import product_details_page_apple_earphone_image1 from "./product_details_page_apple_earphone_image1.png";
@@ -66,6 +67,7 @@ import product_details_page_apple_earphone_image5 from "./product_details_page_a
 export const assets = {
   logo,
   bluegirl,
+  lipanampesa,
   iphone17,
   redme,
   phones,

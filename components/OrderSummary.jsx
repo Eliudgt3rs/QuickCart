@@ -4,6 +4,8 @@ import { useAuth } from "@clerk/nextjs";
 import { useAppContext } from "@/context/AppContext";
 import React, { useEffect, useState } from "react";
 import PaymentModal from "./PaymentModal";
+import { assets } from "@/assets/assets";
+import Image from "next/image";
 
 
 const OrderSummary = () => {
@@ -255,7 +257,7 @@ const OrderSummary = () => {
         onChange={() => setPaymentMethod("cod")}
         className="hidden"
       />
-      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+      <div className="w-10 h-10 flex items-center justify-center rounded-full  text-blue-600">
         💵
       </div>
       <label htmlFor="cod" className="cursor-pointer font-medium text-gray-700">
@@ -263,30 +265,44 @@ const OrderSummary = () => {
       </label>
     </div>
 
-    {/* Online Payment Option */}
+    {/* Lipa Na Mpesa Option */}
     <div
-      onClick={() => setPaymentMethod("online")}
-      className={`cursor-pointer border rounded-xl p-4 flex items-center gap-3 transition-all duration-300 ${
-        paymentMethod === "online"
+      onClick={() => setPaymentMethod("lipa na mpesa")}
+      className={`cursor-pointer border rounded-xl p-4 flex flex-col gap-3 transition-all duration-300 ${
+        paymentMethod === "lipa na mpesa"
           ? "border-green-500 bg-green-50 shadow-md"
           : "border-gray-300 hover:border-green-400 hover:bg-gray-50"
       }`}
     >
-      <input
-        type="radio"
-        name="paymentMethod"
-        id="online"
-        value="online"
-        checked={paymentMethod === "online"}
-        onChange={() => setPaymentMethod("online")}
-        className="hidden"
-      />
-      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-green-100 text-green-600">
-        💳
+      <div className="flex items-center gap-3">
+        <input
+          type="radio"
+          name="paymentMethod"
+          id="lipa na mpesa"
+          value="lipa na mpesa"
+          checked={paymentMethod === "lipa na mpesa"}
+          onChange={() => setPaymentMethod("lipa na mpesa")}
+          className="hidden"
+        />
+        <Image src={assets.lipanampesa} alt="Lipa Na Mpesa" className="w-10 h-10 object-scale-up" />
+        <label htmlFor="lipa na mpesa" className="cursor-pointer font-medium text-gray-700">
+          Lipa Na Mpesa
+        </label>
       </div>
-      <label htmlFor="online" className="cursor-pointer font-medium text-gray-700">
-        Online Payment
-      </label>
+      {paymentMethod === "lipa na mpesa" && (
+        <div className="flex flex-col gap-2">
+          <p
+            type="text"
+            placeholder="Paybill Number"
+            className="w-full outline-none p-2.5 text-gray-800 border font-medium"
+          >PAYBILL NUMBER: 247247</p>
+          <p
+            type="text"
+            placeholder="Account Number"
+            className="w-full outline-none p-2.5 text-gray-800 border font-medium"
+          >ACCOUNT NUMBER: 1440182861684</p>
+        </div>
+      )}
     </div>
   </div>
 </div>

@@ -26,6 +26,20 @@ export default function RootLayout({ children }) {
               <ScrollToTop />
             </WishlistProvider>
           </AppContextProvider>
+          <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=G-E808Y38WB9`}
+        strategy="afterInteractive"
+          />
+         {/*/<!-- Google tag (gtag.js) -->*/} 
+          <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-E808Y38WB9');
+        `}
+      </Script>
+
           <Script src="//code.tidio.co/rnso6itayaxmnwwlihwjhhhwikfdtek1.js" async />
         </body>
       </html>

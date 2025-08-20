@@ -12,9 +12,9 @@ const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TO
 export async function POST(request) {
   try {
     const { userId } = getAuth(request);
-    const { address, items } = await request.json();
+    const { address, items, paymentMethod } = await request.json();
 
-    if (!address || !items || items.length === 0) {
+    if (!address || !items || items.length === 0 || !paymentMethod) {
       return NextResponse.json({ success: false, message: "Invalid Data" });
     }
 
@@ -51,7 +51,8 @@ export async function POST(request) {
       })),
       amount: finalAmount,
       date: Date.now(),
-      status: "Order Placed"
+      status: "Order Placed",
+      paymentMethod
     });
 
     await inngest.send({
@@ -86,6 +87,7 @@ export async function POST(request) {
 ${productList}
 
 💰 *Total:* ${finalAmount} KES
+💳 *Payment Method:* ${paymentMethod}
 🔗 View Order: https://yenustore.vercel.app/seller/orders
 `;
 
