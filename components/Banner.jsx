@@ -18,7 +18,7 @@ const Banner = () => {
         <p className="max-w-[343px] font-medium text-gray-800/60">
           From immersive sound to precise controls—everything you need to win
         </p>
-        <Link href="/all-products">
+        <Link href="/search-results?query=gaming">
   <button className="group flex items-center justify-center gap-1 px-12 py-2.5 bg-red-600 rounded text-white hover:bg-red-700 transition-colors">
     Buy now
     <Image

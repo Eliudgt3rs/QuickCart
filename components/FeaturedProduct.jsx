@@ -31,7 +31,7 @@ const FeaturedProduct = () => {
   return (
     <div className="mt-14">
       <div className="flex flex-col items-center">
-        <p className="text-4xl font-medium">Featured Products</p>
+        <p className="text-4xl font-medium">Best Prices in Kenya</p>
         <div className="w-40 h-0.5 bg-red-600 mt-2"></div>
       </div>
 
@@ -51,7 +51,7 @@ const FeaturedProduct = () => {
                 {description}
               </p>
               <Link href="/all-products">
-                <button className="flex items-center gap-1.5 bg-red-600 px-4 py-2 rounded text-white hover:bg-red-700 transition-colors">
+                <button className="flex items-center gap-1.5 mt-3 bg-red-600 px-4 py-2 rounded text-white hover:bg-red-700 transition-colors">
                   Buy now
                   <Image
                     className="h-3 w-3"
