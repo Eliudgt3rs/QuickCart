@@ -1,20 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { assets, CartIcon, BagIcon, HomeIcon, BoxIcon } from "@/assets/assets";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
-import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
 import { useClerk, useUser, UserButton } from "@clerk/nextjs";
+import { categories } from "@/assets/categories";
 
 const Navbar = () => {
   const { isSeller, router, user, getCartCount } = useAppContext();
-  const { wishlist } = useWishlist();
   const { openSignIn } = useClerk();
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showMobileMenu, setShowMobileMenu] = useState(false); // New state for mobile menu
+  const [showShopDropdown, setShowShopDropdown] = useState(false);
+  const [showMobileShopDropdown, setShowMobileShopDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleSearch = (e) => {
     if (e.key === 'Enter' && searchQuery.trim() !== '') {
@@ -30,6 +32,20 @@ const Navbar = () => {
     }
   };
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowShopDropdown(false);
+      setShowMobileShopDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-gray-700 bg-white">
       <Image
@@ -44,9 +60,47 @@ const Navbar = () => {
         <Link href="/" className="hover:text-gray-900 transition">
           Home
         </Link>
-        <Link href="/all-products" className="hover:text-gray-900 transition">
-          Shop
-        </Link>
+        <div
+          className="relative py-2"
+          ref={dropdownRef}
+        >
+          <button
+            className="flex items-center gap-2 hover:text-gray-900 transition"
+            onClick={() => setShowShopDropdown(!showShopDropdown)}
+          >
+            <span>Shop</span>
+            <svg
+              className={`w-4 h-4 transition-transform duration-300 ${
+                showShopDropdown ? "transform rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          {showShopDropdown && (
+            <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-md shadow-lg">
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  href={`/search-results?query=${category.searchQuery}`}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => setShowShopDropdown(false)}
+                >
+                  {category.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
         <Link href="/about-us" className="hover:text-gray-900 transition">
           About Us
         </Link>
@@ -76,14 +130,6 @@ const Navbar = () => {
             onKeyPress={handleSearch}
           />
         )}
-        <Link href="/wishlist" className="relative hover:text-gray-900 transition">
-          <Image className="w-6 h-6" src={assets.heart_icon} alt="wishlist icon" />
-          {wishlist.length > 0 && (
-            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1.5 py-0.5">
-              {wishlist.length}
-            </span>
-          )}
-        </Link>
         <Link href="/cart" className="relative hover:text-gray-900 transition">
           <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
           {getCartCount() > 0 && (
@@ -131,14 +177,6 @@ const Navbar = () => {
             onKeyPress={handleSearch}
           />
         )}
-        <Link href="/wishlist" className="relative hover:text-gray-900 transition">
-          <Image className="w-6 h-6" src={assets.heart_icon} alt="wishlist icon" />
-          {wishlist.length > 0 && (
-            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1.5 py-0.5">
-              {wishlist.length}
-            </span>
-          )}
-        </Link>
         <Link href="/cart" className="relative hover:text-gray-900 transition">
           <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
           {getCartCount() > 0 && (
@@ -177,6 +215,7 @@ const Navbar = () => {
             className={`fixed top-0 left-0 h-full bg-white z-40 flex flex-col items-center justify-center md:hidden transform transition-transform duration-300 ease-in-out ${
               showMobileMenu ? 'translate-x-0 w-3/4' : '-translate-x-full w-3/4'
             }`}
+            ref={dropdownRef}
           >
             <button onClick={() => setShowMobileMenu(false)} className="absolute top-4 right-4 p-2 focus:outline-none">
               <Image src={assets.add_icon} alt="close icon" className="w-8 h-8 rotate-45" />
@@ -206,13 +245,47 @@ const Navbar = () => {
     >
       Home
     </Link>
-    <Link
-      href="/all-products"
-      className="hover:text-red-600 transition"
-      onClick={() => setShowMobileMenu(false)}
-    >
-      Shop
-    </Link>
+    <div className="relative">
+      <button
+        className="flex items-center justify-between w-full hover:text-red-600 transition"
+        onClick={() => setShowMobileShopDropdown(!showMobileShopDropdown)}
+      >
+        <span>Shop</span>
+        <svg
+          className={`w-4 h-4 transition-transform duration-300 ${
+            showMobileShopDropdown ? "transform rotate-180" : ""
+          }`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
+      </button>
+      {showMobileShopDropdown && (
+        <div className="mt-2 flex flex-col gap-2 pl-4">
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              href={`/search-results?query=${category.searchQuery}`}
+              className="hover:text-red-600 transition"
+              onClick={() => {
+                setShowMobileMenu(false);
+                setShowMobileShopDropdown(false);
+              }}
+            >
+              {category.name}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
     <Link
       href="/about-us"
       className="hover:text-red-600 transition"

@@ -1,20 +1,23 @@
-"use client";
-import React from "react";
-import ProductCard from "./ProductCard";
-import { useAppContext } from "@/context/AppContext";
+'use client';
+import React, { useRef } from 'react';
+import ProductCard from './ProductCard';
+import { useAppContext } from '@/context/AppContext';
 
 const HomeProducts = () => {
   const { paginatedProducts, products, productsPerPage, currentPage, setCurrentPage } = useAppContext();
+  const allProductsRef = useRef(null);
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo(0, 0); // Scroll to top on page change
+    if (allProductsRef.current) {
+      allProductsRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="flex flex-col items-center pt-14">
+    <div ref={allProductsRef} className="flex flex-col items-center pt-14">
       <h1 className="text-3xl font-semibold text-gray-800 text-center">
         All Products
       </h1>
@@ -32,14 +35,14 @@ const HomeProducts = () => {
             disabled={currentPage === 1}
             className="px-4 py-2 border rounded-md disabled:opacity-50"
           >
-            Previous
+            Prev
           </button>
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i + 1}
               onClick={() => handlePageChange(i + 1)}
               className={`px-4 py-2 border rounded-md ${
-                currentPage === i + 1 ? "bg-red-600 text-white" : "bg-white text-gray-700"
+                currentPage === i + 1 ? 'bg-red-600 text-white' : 'bg-white text-gray-700'
               }`}
             >
               {i + 1}

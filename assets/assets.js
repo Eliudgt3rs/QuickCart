@@ -51,9 +51,9 @@ import pixel from "./pixelhero.png";
 import purpleboy from "./purpleman.webp";
 import phones from './ourshop.jpg';
 import aboutone from "./TheYenuPhonesKenya.png";
-import abouttwo from "./abouttwo.png";
-import aboutthree from "./aboutthree.png";
-import aboutfour from "./aboutf.png";
+import abouttwo from "./nano.jpg";
+import aboutthree from "./gsmarena_007.jpg";
+import aboutfour from "./nicely.png";
 import redme from "./redmeA5.png";
 import lipanampesa from "./lipa-na-mpesa-featured.jpg";
 import iphone17 from "./iphone17.png"

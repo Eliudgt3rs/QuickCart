@@ -35,7 +35,7 @@ const AllProducts = () => {
                             disabled={currentPage === 1}
                             className="px-4 py-2 border rounded-md disabled:opacity-50"
                         >
-                            Previous
+                            Prev
                         </button>
                         {Array.from({ length: totalPages }, (_, i) => (
                             <button

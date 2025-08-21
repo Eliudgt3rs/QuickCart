@@ -11,16 +11,13 @@ const Footer = () => {
         <div className="w-4/5">
           <Image onClick={() => router.push("/")} className="w-28 md:w-32 hover:cursor-pointer" src={assets.logo} alt="logo" />
           <p className="mt-6 text-sm">
-            Your one-stop shop for the latest and greatest in mobile technology. 
-            We offer a wide selection of smartphones, accessories, and more, 
-            all at competitive prices. Discover the perfect device to fit your lifestyle, 
-            backed by our commitment to quality and customer satisfaction.
+           Your trusted online store in Kenya for the latest smartphones, affordable mobile phones, and quality phone accessories. Shop top brands at the best prices in Kenya with fast delivery and secure payment options. Find the perfect device to fit your lifestyle—backed by reliable customer support and our commitment to quality.
           </p>
         </div>
 
         <div className="w-1/2 flex items-center justify-start md:justify-center">
           <div>
-            <h2 className="font-medium text-gray-900 mb-5">Company</h2>
+            <h2 className="font-medium text-gray-900 mb-5">Yenu Phones Kenya™</h2>
             <ul className="text-sm space-y-2">
               <li>
                 <a className="hover:underline transition" href="/">Home</a>
@@ -49,7 +46,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="py-4 text-center text-xs md:text-sm">
-        Copyright {new Date().getFullYear()} © <a href="www.eliudwaititu.online">Yenu Phone Store</a>.  All Right Reserved.
+        Copyright {new Date().getFullYear()} © <a href="www.eliudwaititu.online">Yenu Phones Kenya™</a>.  All Rights Reserved.
       </p>
     </footer>
   );

@@ -1,21 +1,37 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const NewsLetter = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = () => {
+    if (email.trim() !== "") {
+      toast.success("Subscribed successfully!");
+      setEmail("");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center text-center space-y-2 pt-8 pb-14">
       <h1 className="md:text-4xl text-2xl font-medium">
         Subscribe now & get 20% off
       </h1>
       <p className="md:text-base text-gray-500/80 pb-8">
-        Be the first to know about our latest arrivals, exclusive deals, and special offers.
+        Be the first to know about our latest arrivals, exclusive deals, and special offers. Get 20% off on delivery of selected products.
       </p>
       <div className="flex items-center justify-between max-w-2xl w-full md:h-14 h-12">
         <input
           className="border border-gray-500/30 rounded-md h-full border-r-0 outline-none w-full rounded-r-none px-3 text-gray-500"
           type="text"
-          placeholder="Enter your email id"
+          placeholder="Enter your email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="md:px-12 px-8 h-full text-white bg-red-600 rounded-md rounded-l-none">
+        <button
+          onClick={handleSubscribe}
+          className="md:px-12 px-8 h-full text-white bg-red-600 rounded-md rounded-l-none"
+        >
           Subscribe
         </button>
       </div>

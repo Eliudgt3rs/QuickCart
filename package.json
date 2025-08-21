@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.4.1",
     "axios": "^1.11.0",
     "cloudinary": "^2.7.0",
+    "framer-motion": "^12.23.12",
     "git-filter-repo": "^0.0.30",
     "inngest": "^3.40.1",
     "mongoose": "^8.17.0",
