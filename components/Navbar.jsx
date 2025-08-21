@@ -90,6 +90,13 @@ const Navbar = () => {
           </button>
           {showShopDropdown && (
             <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-md shadow-lg">
+              <Link
+                href="/all-products"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                onClick={() => setShowShopDropdown(false)}
+              >
+                All Products
+              </Link>
               {categories.map((category) => (
                 <Link
                   key={category.id}
@@ -288,6 +295,16 @@ const Navbar = () => {
       </button>
       {showMobileShopDropdown && (
         <div className="mt-2 flex flex-col gap-2 pl-4">
+          <Link
+            href="/all-products"
+            className="hover:text-red-600 transition"
+            onClick={() => {
+              setShowMobileMenu(false);
+              setShowMobileShopDropdown(false);
+            }}
+          >
+            All Products
+          </Link>
           {categories.map((category) => (
             <Link
               key={category.id}
