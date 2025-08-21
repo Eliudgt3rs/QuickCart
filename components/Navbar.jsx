@@ -4,12 +4,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { assets, CartIcon, BagIcon, HomeIcon, BoxIcon } from "@/assets/assets";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
+import { WishlistContext } from "@/context/WishlistContext";
 import Image from "next/image";
 import { useClerk, useUser, UserButton } from "@clerk/nextjs";
 import { categories } from "@/assets/categories";
 
 const Navbar = () => {
   const { isSeller, router, user, getCartCount } = useAppContext();
+  const { wishlist } = React.useContext(WishlistContext);
   const { openSignIn } = useClerk();
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -130,6 +132,14 @@ const Navbar = () => {
             onKeyPress={handleSearch}
           />
         )}
+        <Link href="/wishlist" className="relative hover:text-gray-900 transition">
+          <Image className="w-6 h-6" src={assets.heart_icon} alt="wishlist icon" />
+          {wishlist.length > 0 && (
+            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1.5 py-0.5">
+              {wishlist.length}
+            </span>
+          )}
+        </Link>
         <Link href="/cart" className="relative hover:text-gray-900 transition">
           <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
           {getCartCount() > 0 && (
@@ -177,6 +187,14 @@ const Navbar = () => {
             onKeyPress={handleSearch}
           />
         )}
+        <Link href="/wishlist" className="relative hover:text-gray-900 transition">
+          <Image className="w-6 h-6" src={assets.heart_icon} alt="wishlist icon" />
+          {wishlist.length > 0 && (
+            <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1.5 py-0.5">
+              {wishlist.length}
+            </span>
+          )}
+        </Link>
         <Link href="/cart" className="relative hover:text-gray-900 transition">
           <Image className="w-6 h-6" src={assets.cart_icon} alt="cart icon" />
           {getCartCount() > 0 && (
