@@ -14,8 +14,8 @@ const HeaderSlider = () => {
       offer: "Buy Now & Get Free Phone Case!",
       buttonText1: "Buy Now",
       buttonText2: "Learn More",
-      imgSrc: assets.redme,
-      button1Url: "/search-results?query=Redmi A5",
+      imgSrc: assets.redhero,
+      button1Url: "/search-results?query=Redmi A3X",
       button2Url: "/search-results?query=Smartphone",
     },
      {
