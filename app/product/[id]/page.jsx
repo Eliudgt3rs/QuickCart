@@ -20,6 +20,9 @@ const Product = () => {
     const [showImageModal, setShowImageModal] = useState(false); // State for modal visibility
     const [currentImageIndex, setCurrentImageIndex] = useState(0); // State for current image index in modal
 
+    const [showFeatures, setShowFeatures] = useState(true);
+    const [showDescription, setShowDescription] = useState(true);
+
     const fetchProductData = async () => {
         const product = products.find(product => product._id === id);
         setProductData(product);
@@ -136,22 +139,63 @@ const Product = () => {
                     </div>
 
                     {productData.features && productData.features.trim() !== "" && (
-                        <>
-                            <p className="text-gray-900 mt-3 text-2xl">Features</p>
-                            <ul className="list-disc list-inside text-gray-700 mt-3">
-                                {productData.features
-                                    .split(",") // split features by comma
-                                    .map((feature, idx) => (
-                                        <li key={idx}>{feature.trim()}</li>
-                                    ))}
-                            </ul>
-                        </>
+                        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-6">
+                            <div
+                                className="flex justify-between items-center cursor-pointer pb-2 border-b border-gray-200"
+                                onClick={() => setShowFeatures(!showFeatures)}
+                            >
+                                <p className="text-gray-900 text-2xl font-medium">Features</p>
+                                <svg
+                                    className={`w-6 h-6 transform transition-transform duration-300 ${showFeatures ? 'rotate-180' : ''}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${showFeatures ? 'max-h-screen opacity-100 pt-4' : 'max-h-0 opacity-0'}`}
+                            >
+                                <div className="flex flex-col text-gray-800 space-y-6 leading-relaxed">
+                                    {productData.features
+                                        .split(",") // split features by comma
+                                        .filter(f => f.trim() !== '') // Filter out empty features
+                                        .map((feature, idx) => (
+                                            <p key={idx}>{feature.trim()}</p>
+                                        ))}
+                                </div>
+                            </div>
+                        </div>
                     )}
 
-                    <p className="text-gray-900 mt-3 text-2xl"> About this product</p>
-                    <p className="text-gray-700 mt-3">
-                        {productData.description}
-                    </p>
+                    <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-6">
+                        <div
+                            className="flex justify-between items-center cursor-pointer pb-2 border-b border-gray-200"
+                            onClick={() => setShowDescription(!showDescription)}
+                        >
+                            <p className="text-gray-900 text-2xl font-medium"> About this product</p>
+                            <svg
+                                className={`w-6 h-6 transform transition-transform duration-300 ${showDescription ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ease-in-out ${showDescription ? 'max-h-screen opacity-100 pt-4' : 'max-h-0 opacity-0'}`}
+                        >
+                            <div className="space-y-6 pt-4 leading-relaxed">
+                                {productData.description.split('\n').filter(p => p.trim() !== '').map((paragraph, index) => (
+                                    <p key={index} className="text-gray-800">{paragraph}</p>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                     
                     <hr className="bg-gray-600 my-6" />
                     <div className="overflow-x-auto">
@@ -185,7 +229,10 @@ const Product = () => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6 pb-14 w-full">
                     {products.slice(0, 5).map((product, index) => <ProductCard key={index} product={product} />)}
                 </div>
-                <button className="px-8 py-2 mb-16 border rounded text-gray-500/70 hover:bg-slate-50/90 transition">
+                <button
+                    onClick={() => router.push('/all-products')}
+                    className="px-8 py-2 mb-16 border rounded text-gray-500/70 hover:bg-slate-50/90 transition"
+                >
                     See more
                 </button>
             </div>

@@ -20,9 +20,9 @@ const ProductCard = ({ product }) => {
     return (
         <div
             onClick={() => { router.push('/product/' + product._id); scrollTo(0, 0) }}
-            className="flex flex-col items-start gap-0.5 max-w-[200px] w-full cursor-pointer"
+            className="flex flex-col items-start gap-0.5 max-w-[200px] w-full cursor-pointer group"
         >
-            <div className="cursor-pointer group relative bg-gray-500/10 rounded-lg w-full h-52 flex items-center justify-center">
+            <div className="cursor-pointer relative bg-gray-100 group-hover:bg-blue-100 rounded-lg w-full h-52 flex items-center justify-center">
                 <Image
                     src={product.images[0]}
                     alt={product.name}
@@ -61,7 +61,7 @@ const ProductCard = ({ product }) => {
 
             <div className="flex items-end justify-between w-full mt-1">
                 <p className="text-base font-medium">{currency}{product.offerPrice}</p>
-                <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-slate-50 transition">
+                <button className=" max-sm:hidden px-4 py-1.5 text-gray-500 border border-gray-500/20 rounded-full text-xs hover:bg-blue-500 hover:text-white transition">
                     Buy now
                 </button>
             </div>
