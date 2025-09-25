@@ -25,6 +25,7 @@ const Home = () => {
 
   return (
     <>
+      <meta name="google-site-verification" content="Ah-3FFUr-N8k_x7Y2VSWgkA7YroGYsK1b7VzCjRcld8" />
       <Navbar/>
       <div className="px-6 md:px-12 lg:px-25 mt-12">
         <HeaderSlider />
