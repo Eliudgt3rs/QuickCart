@@ -28,9 +28,9 @@ const BlogPostPage = () => {
     return (
         <>
             <Navbar />
-            <div className="container mx-auto px-4 py-16">
+            <div className="container mx-auto px-4 py-16 mt-4">
                 <div className="max-w-4xl mx-auto">
-                    <img src={blog.image} alt={blog.title} className="w-full h-96 object-cover rounded-lg mb-8" />
+                    <img src={`/${blog.image}`} alt={blog.title} className="w-full h-fit object-cover rounded-lg mb-8" />
                     <h1 className="text-4xl font-bold mb-4">{blog.title}</h1>
                     <div className="flex items-center text-gray-500 mb-8">
                         <p>{blog.author} - {blog.date}</p>

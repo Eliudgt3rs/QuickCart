@@ -2,10 +2,10 @@
 export const blogs = [
     {
         id: 1,
-        image: "/assets/blog1.jpg",
+        image: "phoeguide.jpg",
         title: "The Ultimate Guide to Buying Smartphones in Kenya",
-        author: "QuickCart",
-        date: "September 22, 2025",
+        author: "Yenu Phones",
+        date: "May 22, 2025",
         snippet: "Kenya's smartphone market is buzzing with options. From high-end flagship models to budget-friendly devices, this guide will help you navigate the choices and find the perfect phone for your needs and budget. We'll cover the top brands, what to look for in a phone, and where to find the best deals.",
         content: `
             <p>The smartphone market in Kenya is a dynamic and rapidly growing space, offering a plethora of options for every type of user. Whether you're a tech enthusiast looking for the latest flagship model or a student needing a reliable and budget-friendly device, navigating the choices can be overwhelming. This comprehensive guide will walk you through everything you need to know about buying smartphones in Kenya, from the most popular brands to the key features to consider. At QuickCart, we want to empower you to make an informed decision and find the perfect smartphone that fits your lifestyle and budget.</p>
@@ -32,10 +32,10 @@ export const blogs = [
     },
     {
         id: 2,
-        image: "/assets/blog2.jpg",
+        image: "musthave.jpg",
         title: "10 Must-Have Gadgets for Every Kenyan Home",
-        author: "QuickCart",
-        date: "September 23, 2025",
+        author: "Yenu Store",
+        date: "August 3, 2025",
         snippet: "Transform your home into a smart home with these 10 essential gadgets. From smart lighting to robot vacuums, these devices will make your life easier, more convenient, and more fun. We've curated a list of the best gadgets available in Kenya right now.",
         content: `
             <p>In today's fast-paced world, technology is no longer a luxury but a necessity. The right gadgets can transform your home, making it more comfortable, convenient, and entertaining. From smart home devices that automate your daily routines to kitchen appliances that simplify your cooking, there's a gadget for every need and budget. This guide will explore 10 must-have gadgets for every Kenyan home, all of which are available on QuickCart. By the end of this article, you'll be inspired to upgrade your living space and embrace the future of home technology.</p>
@@ -63,10 +63,10 @@ export const blogs = [
     },
     {
         id: 3,
-        image: "/assets/blog3.jpg",
+        image: "fake.webp",
         title: "How to Spot Fake Electronics in Nairobi",
-        author: "QuickCart",
-        date: "September 24, 2025",
+        author: "Yenu Store",
+        date: "May 2, 2025",
         snippet: "The market is flooded with counterfeit electronics. This guide will teach you how to spot fake gadgets and avoid getting scammed. Learn the tell-tale signs of a counterfeit product, from the packaging to the performance, and shop with confidence.",
         content: `
             <p>Nairobi's bustling electronics market is a treasure trove for tech enthusiasts, but it's also a minefield of counterfeit products. From fake smartphones to imitation laptops, the market is flooded with convincing-looking fakes that can leave you feeling cheated and frustrated. This guide will equip you with the knowledge you need to spot fake electronics in Nairobi and make sure you're getting the real deal. At QuickCart, we are committed to selling only genuine products, but we also want to help you stay safe when shopping elsewhere.</p>
@@ -88,10 +88,10 @@ export const blogs = [
     },
     {
         id: 4,
-        image: "/assets/blog4.jpg",
+        image: "ecomgrowthinkenya.avif",
         title: "The Rise of E-commerce in Kenya: A Shopper's Guide",
-        author: "QuickCart",
-        date: "September 25, 2025",
+        author: "Yenu Store",
+        date: "June 16, 2025",
         snippet: "E-commerce is booming in Kenya. This guide will help you navigate the world of online shopping, from finding the best deals to staying safe from scams. Learn how to make the most of online shopping and enjoy the convenience of having products delivered to your doorstep.",
         content: `
             <p>E-commerce has revolutionized the way Kenyans shop. Gone are the days of spending hours in traffic and crowded malls. Now, with just a few clicks, you can have anything from a new smartphone to your weekly groceries delivered right to your doorstep. The rise of e-commerce in Kenya has been fueled by a combination of factors, including increased internet penetration, the proliferation of smartphones, and the convenience of mobile payment solutions like M-Pesa. This guide will provide you with a comprehensive overview of the e-commerce landscape in Kenya and offer some valuable tips for a safe and enjoyable online shopping experience. At QuickCart, we are proud to be a part of this digital revolution, offering a wide range of products and a seamless shopping experience to our customers across the country.</p>
@@ -119,10 +119,10 @@ export const blogs = [
     },
     {
         id: 5,
-        image: "/assets/blog5.jpg",
+        image: "studentlappy.webp",
         title: "Top 5 Laptops for Students in Kenya",
-        author: "QuickCart",
-        date: "September 26, 2025",
+        author: "Yenu Store",
+        date: "August 26, 2025",
         snippet: "A good laptop is essential for academic success. This guide will help you find the perfect laptop for your studies, whether you're in high school or university. We'll cover the top brands, what to look for in a student laptop, and where to find the best deals.",
         content: `
             <p>In today's digital age, a laptop is an indispensable tool for students in Kenya. From taking notes in class to writing research papers and collaborating on projects, a reliable laptop can make a huge difference in a student's academic journey. However, with so many options available, choosing the right laptop can be a daunting task. This guide will walk you through the top 5 laptops for students in Kenya, taking into account factors like performance, portability, and price. At QuickCart, we understand the unique needs of students, and we're here to help you find the perfect laptop to power your studies.</p>
@@ -149,10 +149,10 @@ export const blogs = [
     },
     {
         id: 6,
-        image: "/assets/blog6.jpg",
+        image: "selecttv.webp",
         title: "How to Choose the Perfect TV for Your Home in Kenya",
         author: "QuickCart",
-        date: "September 27, 2025",
+        date: "July 1, 2025",
         snippet: "Buying a new TV can be a daunting task. This guide will help you understand the different types of TVs available in Kenya and choose the perfect one for your home. We'll cover everything from screen size and resolution to smart features and sound quality.",
         content: `
             <p>A television is no longer just a device for watching your favorite shows; it's the centerpiece of your home entertainment system. From family movie nights to binge-watching the latest series, the right TV can transform your viewing experience. However, with a dizzying array of options available, choosing the perfect TV for your home in Kenya can be a challenge. This guide will break down the key factors to consider, from screen size and resolution to smart features and sound quality, to help you make an informed decision. At QuickCart, we offer a wide selection of TVs to suit every need and budget, and we're here to help you find the perfect one for your home.</p>
