@@ -66,7 +66,7 @@ export const AppContextProvider = (props) => {
                 setUserData(data.user);
                 
                 // Merge local cart with server cart
-                let localCart = structuredClone(cartItems);
+                let localCart = JSON.parse(localStorage.getItem('cart')) || {};
                 let serverCart = data.user.cartItems || {};
                 let mergedCart = {...serverCart, ...localCart};
 
@@ -79,6 +79,7 @@ export const AppContextProvider = (props) => {
                             Authorization: `Bearer ${token}`
                         }
                     });
+                    localStorage.removeItem('cart');
                 }
 
             }
@@ -122,6 +123,8 @@ export const AppContextProvider = (props) => {
             console.error("Error updating cart:", error);
             toast.error("Failed to update cart");
         }
+    } else {
+        localStorage.setItem('cart', JSON.stringify(cartData));
     }
 };
 
@@ -148,6 +151,8 @@ export const AppContextProvider = (props) => {
                 console.error("Error updating cart:", error);
                 toast.error("Failed to update cart");
             }
+        } else {
+            localStorage.setItem('cart', JSON.stringify(cartData));
         }
 
     }
@@ -165,15 +170,26 @@ export const AppContextProvider = (props) => {
     const getCartAmount = () => {
         let totalAmount = 0;
         for (const items in cartItems) {
-            let itemInfo = products.find((product) => product._id === items);
             if (cartItems[items] > 0) {
-                totalAmount += itemInfo.offerPrice * cartItems[items];
+                let itemInfo = products.find((product) => product._id === items);
+                if (itemInfo) {
+                    totalAmount += itemInfo.offerPrice * cartItems[items];
+                }
             }
         }
         return Math.floor(totalAmount * 100) / 100;
     }
 
+    const clearCart = () => {
+        setCartItems({});
+        localStorage.removeItem('cart');
+    }
+
     useEffect(() => {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart) {
+            setCartItems(cart);
+        }
         fetchProductData()
     }, [])
 
@@ -193,7 +209,8 @@ export const AppContextProvider = (props) => {
         cartItems, setCartItems,
         addToCart, updateCartQuantity,
         getCartCount, getCartAmount,
-        paginatedProducts, productsPerPage, currentPage, setCurrentPage // Export new pagination values
+        paginatedProducts, productsPerPage, currentPage, setCurrentPage, // Export new pagination values
+        clearCart
     }
 
     return (

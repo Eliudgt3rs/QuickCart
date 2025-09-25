@@ -1,7 +1,15 @@
+'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAppContext } from '@/context/AppContext';
 
 const SuccessPage = () => {
+  const { clearCart } = useAppContext();
+
+  useEffect(() => {
+    clearCart();
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">Order Placed Successfully!</h1>
