@@ -7,6 +7,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { WishlistProvider } from "@/context/WishlistContext";
 import Script from "next/script";
 
+import ClerkLoading from '@/components/ClerkLoading';
+
 const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
 
 export const metadata = {
@@ -16,16 +18,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider proxyUrl={process.env.CLERK_PROXY_URL}>
       <html lang="en">
         <body className={`${outfit.className} antialiased text-gray-700`} >
           <Toaster />
-          <AppContextProvider>
-            <WishlistProvider>
-              {children}
-              <ScrollToTop />
-            </WishlistProvider>
-          </AppContextProvider>
+          <ClerkLoading>
+            <AppContextProvider>
+              <WishlistProvider>
+                {children}
+                <ScrollToTop />
+              </WishlistProvider>
+            </AppContextProvider>
+          </ClerkLoading>
           <Script
         src={`https://www.googletagmanager.com/gtag/js?id=G-E808Y38WB9`}
         strategy="afterInteractive"

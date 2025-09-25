@@ -64,7 +64,23 @@ export const AppContextProvider = (props) => {
 
             if (data.success) {
                 setUserData(data.user);
-                setCartItems(data.user.cartItems || {});
+                
+                // Merge local cart with server cart
+                let localCart = structuredClone(cartItems);
+                let serverCart = data.user.cartItems || {};
+                let mergedCart = {...serverCart, ...localCart};
+
+                setCartItems(mergedCart);
+
+                // Update server with merged cart
+                if (Object.keys(localCart).length > 0) {
+                    await axios.post('/api/cart/update', { cartData: mergedCart }, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                }
+
             }
             else {
                 toast.error(data.message || "Failed to fetch user data");
